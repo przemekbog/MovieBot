@@ -1,0 +1,4 @@
+1. OMN = EOF (KBK)
+2. QKM = MPF (KBK)
+3. MEN = MFN (BKB)
+4. ROP = OSP (KBK)
