@@ -17,8 +17,7 @@ public class BasicCommandManager<T> implements ModifiableManager<T> {
 
     private CommandManager externalCommandManager;
 
-    public BasicCommandManager(T environmentVariables) {
-        this.environmentObject = environmentVariables;
+    public BasicCommandManager() {
     }
 
     @Override
@@ -44,6 +43,10 @@ public class BasicCommandManager<T> implements ModifiableManager<T> {
                 args
         ));
 
+    }
+
+    public void setEnvironmentObject(T environmentObject) {
+        this.environmentObject = environmentObject;
     }
 
     public void stopOverriding() {
