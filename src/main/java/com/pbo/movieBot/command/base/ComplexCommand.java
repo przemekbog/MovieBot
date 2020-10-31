@@ -10,14 +10,12 @@ import com.pbo.movieBot.command.BasicCommandManager;
  */
 public abstract class ComplexCommand<T> extends Command<T> {
 
-    protected T environmentVariables;
-
-    private ModifiableManager<T> overridingManager;
+    private BasicCommandManager<T> overridingManager;
     private CommandManager overridedManager;
 
     public ComplexCommand(T environmentVariables) {
-        this.environmentVariables = environmentVariables;
-        overridingManager = new BasicCommandManager<>(environmentVariables);
+        overridingManager = new BasicCommandManager<>();
+        overridingManager.setEnvironmentObject(environmentVariables);
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.pbo.movieBot.command;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
-import com.pbo.movieBot.command.base.ComplexCommand;
 import com.sun.tools.javac.util.List;
+import net.dv8tion.jda.api.Permission;
 
 public class TestCommand extends Command {
     public TestCommand() {
@@ -12,15 +12,17 @@ public class TestCommand extends Command {
                 "t",
                 "est"
         );
+        this.requiredPermissions.add(Permission.VOICE_USE_VAD);
     }
 
     @Override
     protected void run(CommandEvent event) {
         event.getChannel().sendMessage("Test").queue();
 
-        WorkingRequestCommand requestCommand = new WorkingRequestCommand(event);
-        requestCommand.setMessage("Give").setOnResponseGot(s -> {
-            event.getChannel().sendMessage("You typed: \"" + s +"\"").queue();
-        }).request();
+        RequestCommand requestCommand = new RequestCommand(event);
+
+        requestCommand.setMessage("Give").setOnResponseGot(s ->
+                event.getChannel().sendMessage("You typed: \"" + String.join(" ", s) +"\"").queue()
+        ).request();
     }
 }

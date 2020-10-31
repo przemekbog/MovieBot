@@ -13,7 +13,7 @@ import javax.security.auth.login.LoginException;
 public class Bot {
     public static void main(String[] args) throws LoginException {
 
-        BasicCommandManager commandManager = new BasicCommandManager(new Object());
+        BasicCommandManager commandManager = new BasicCommandManager();
         commandManager.addCommands(
                 new TestCommand(),
                 new TestComplex()
