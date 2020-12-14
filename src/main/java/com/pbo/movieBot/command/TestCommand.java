@@ -2,8 +2,9 @@ package com.pbo.movieBot.command;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
-import com.sun.tools.javac.util.List;
 import net.dv8tion.jda.api.Permission;
+
+import java.util.List;
 
 public class TestCommand extends Command {
     public TestCommand() {
