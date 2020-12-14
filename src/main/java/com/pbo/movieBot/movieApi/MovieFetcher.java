@@ -1,7 +1,7 @@
 package com.pbo.movieBot.movieApi;
 
 import com.google.gson.Gson;
-import com.pbo.movieBot.key.APIKeys;
+import com.pbo.movieBot.options.Configuration;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieApi.movie.MovieType;
 
@@ -18,7 +18,7 @@ public class MovieFetcher {
 
     static {
         API_URL = "http://www.omdbapi.com/";
-        API_KEY = APIKeys.getMovieAPIKey();
+        API_KEY = Configuration.getMovieAPIKey();
     }
 
     private MovieFetcher() {

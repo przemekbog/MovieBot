@@ -1,4 +1,4 @@
-package com.pbo.movieBot.key;
+package com.pbo.movieBot.options;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -7,15 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 // Bad way to do this, but oh well... what can I do?
-public class APIKeys {
+public class Configuration {
 
-    private static KeyHolder instance;
+    private static ConfigurationHolder instance;
 
     static {
         Gson gson = new Gson();
         try {
-            JsonReader reader = new JsonReader(new FileReader("options/keys.json"));
-            instance = gson.fromJson(reader, KeyHolder.class);
+            JsonReader reader = new JsonReader(new FileReader("options/config.json"));
+            instance = gson.fromJson(reader, ConfigurationHolder.class);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -29,9 +29,9 @@ public class APIKeys {
         return instance.getDiscordAPIKey();
     }
 
-    private static class KeyHolder {
-        private String movieAPIKey = "undefined";
-        private String discordAPIKey = "undefined";
+    private static class ConfigurationHolder {
+        private String movieAPIKey = "not set";
+        private String discordAPIKey = "not set";
 
         public String getMovieAPIKey() {
             return movieAPIKey;

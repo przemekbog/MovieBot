@@ -13,6 +13,8 @@ public abstract class Command<T> {
     protected List<Permission> requiredPermissions = new ArrayList<>();
     protected String help = "No help available for this command";
 
+    protected abstract void run(CommandEvent<T> event);
+
     public void execute(CommandEvent<T> event) {
         // TODO: Add authorisation and stuff... idk
 
@@ -40,6 +42,4 @@ public abstract class Command<T> {
     public String getHelp() {
         return help;
     }
-
-    protected abstract void run(CommandEvent<T> event);
 }
