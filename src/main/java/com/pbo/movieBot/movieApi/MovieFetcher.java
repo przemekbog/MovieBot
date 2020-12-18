@@ -11,15 +11,10 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class MovieFetcher {
-    public static final String API_URL;
-    public static final String API_KEY;
+    public static final String API_URL = "http://www.omdbapi.com/";
+    public static final String API_KEY = Configuration.getMovieAPIKey();
 
     private ParameterisedUrlBuilder urlBuilder = new ParameterisedUrlBuilder(API_URL);
-
-    static {
-        API_URL = "http://www.omdbapi.com/";
-        API_KEY = Configuration.getMovieAPIKey();
-    }
 
     private MovieFetcher() {
         urlBuilder.setParameter("apikey", API_KEY);
