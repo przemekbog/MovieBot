@@ -1,6 +1,6 @@
 package com.pbo.movieBot;
 
-import com.pbo.movieBot.command.TestCommand;
+import com.pbo.movieBot.commands.TestCommand;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.options.Configuration;

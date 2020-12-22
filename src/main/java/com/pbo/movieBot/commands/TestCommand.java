@@ -1,4 +1,4 @@
-package com.pbo.movieBot.command;
+package com.pbo.movieBot.commands;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
