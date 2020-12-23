@@ -35,6 +35,7 @@ public class Bot {
 //        );
 //
 //        CommandClient commandClient = new CommandClient(commandManager, "!");
+        //
 
         CommandExecutorImpl executor = new CommandExecutorImpl(new Object());
         executor.addCommands(
