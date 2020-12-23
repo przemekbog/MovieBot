@@ -1,12 +1,12 @@
-package com.pbo.movieBot.commands;
+package com.pbo.movieBot.commands.test1;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
 
-public class TestCommand extends Command {
+public class TestCommand1 extends Command {
     @Override
     public String getName() {
-        return "testCom";
+        return "test1";
     }
 
     @Override

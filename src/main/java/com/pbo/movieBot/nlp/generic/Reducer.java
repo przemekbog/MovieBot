@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Reducer<T> {
     Pattern getPattern();
-    Token<T> reduce(List<Token<?>> list);
+    Token<T> reduce(List<Token<?>> tokens);
 }

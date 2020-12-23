@@ -1,8 +1,10 @@
 package com.pbo.movieBot;
 
-import com.pbo.movieBot.commands.TestCommand;
+import com.pbo.movieBot.commands.test1.TestCommand1;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
+import com.pbo.movieBot.commands.test2.TestCommand2;
+import com.pbo.movieBot.commands.test3.TestCommand3;
 import com.pbo.movieBot.options.Configuration;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -35,7 +37,11 @@ public class Bot {
 //        CommandClient commandClient = new CommandClient(commandManager, "!");
 
         CommandExecutorImpl executor = new CommandExecutorImpl(new Object());
-        executor.addCommand(new TestCommand());
+        executor.addCommands(
+                new TestCommand1(),
+                new TestCommand2(),
+                new TestCommand3()
+        );
 
         CommandListener listener = new CommandListener(executor, "!");
 
