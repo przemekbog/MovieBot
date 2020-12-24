@@ -5,11 +5,12 @@ import com.pbo.movieBot.nlp.base.Token;
 
 import java.util.List;
 
-public class SingleTokenPattern implements Pattern {
-    protected Token<?> token;
+public class ClassPattern implements Pattern {
 
-    public SingleTokenPattern(Token<?> token) {
-        this.token = token;
+    private Class<?> clazz;
+
+    public ClassPattern(Class<?> clazz) {
+        this.clazz = clazz;
     }
 
     @Override
@@ -23,6 +24,7 @@ public class SingleTokenPattern implements Pattern {
             return false;
         }
 
-        return token.equals(tokens.get(0));
+        Token<?> token = tokens.get(0);
+        return token.getClass().equals(clazz);
     }
 }

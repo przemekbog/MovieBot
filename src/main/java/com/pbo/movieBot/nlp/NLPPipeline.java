@@ -1,6 +1,6 @@
 package com.pbo.movieBot.nlp;
 
-import com.pbo.movieBot.nlp.generic.*;
+import com.pbo.movieBot.nlp.base.*;
 
 import java.util.ArrayList;
 import java.util.List;

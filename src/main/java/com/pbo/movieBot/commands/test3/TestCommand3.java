@@ -8,9 +8,7 @@ import com.pbo.movieBot.commands.test3.nlp.reducer.HourMinuteTimeReducer;
 import com.pbo.movieBot.commands.test3.nlp.reducer.IntegerReducer;
 import com.pbo.movieBot.commands.test3.nlp.tokenizer.TokenizerImpl;
 import com.pbo.movieBot.nlp.NLPPipeline;
-import com.pbo.movieBot.nlp.generic.Reducer;
-import com.pbo.movieBot.nlp.generic.Token;
-import com.pbo.movieBot.nlp.generic.Tokenizer;
+import com.pbo.movieBot.nlp.base.Token;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.List;

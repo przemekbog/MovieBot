@@ -1,8 +1,8 @@
 package com.pbo.movieBot.nlp;
 
-import com.pbo.movieBot.nlp.generic.Pattern;
-import com.pbo.movieBot.nlp.generic.Reducer;
-import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.base.Pattern;
+import com.pbo.movieBot.nlp.base.Reducer;
+import com.pbo.movieBot.nlp.base.Token;
 import com.pbo.movieBot.nlp.token.IntegerToken;
 import com.pbo.movieBot.nlp.token.StringToken;
 

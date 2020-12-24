@@ -1,9 +1,7 @@
 package com.pbo.movieBot.commands.test3.nlp.tokenizer;
 
-import com.pbo.movieBot.commands.test3.nlp.token.CharacterToken;
-import com.pbo.movieBot.commands.test3.nlp.token.StringToken;
-import com.pbo.movieBot.nlp.generic.Token;
-import com.pbo.movieBot.nlp.generic.Tokenizer;
+import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.base.Tokenizer;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,3 @@
-package com.pbo.movieBot.nlp.generic;
+package com.pbo.movieBot.nlp.base;
 
 public interface Visitor { } // Marker interface

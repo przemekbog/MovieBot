@@ -2,9 +2,9 @@ package com.pbo.movieBot.commands.test3.nlp.reducer;
 
 import com.pbo.movieBot.commands.test3.nlp.token.IntegerToken;
 import com.pbo.movieBot.commands.test3.nlp.token.StringToken;
-import com.pbo.movieBot.nlp.generic.Pattern;
-import com.pbo.movieBot.nlp.generic.Reducer;
-import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.base.Pattern;
+import com.pbo.movieBot.nlp.base.Reducer;
+import com.pbo.movieBot.nlp.base.Token;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
 package com.pbo.movieBot.commands.test3.nlp.token;
 
-import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.base.Token;
 
-import java.sql.Time;
 import java.time.LocalTime;
 
 public class TimeToken extends Token<LocalTime> {
