@@ -10,6 +10,7 @@ import com.pbo.movieBot.nlp.generic.Token;
 import java.time.LocalTime;
 import java.util.List;
 
+// TODO: Reimplement
 public class HourMinuteTimeReducer implements Reducer<LocalTime> {
     @Override
     public Pattern getPattern() {
@@ -53,10 +54,11 @@ public class HourMinuteTimeReducer implements Reducer<LocalTime> {
 
     @Override
     public Token<LocalTime> reduce(List<Token<?>> tokens) {
-        Integer hours = (Integer) tokens.get(0).getValue();
-        Integer minutes = (Integer) tokens.get(2).getValue();
-
-        LocalTime time = LocalTime.of(hours, minutes);
-        return new TimeToken(time);
+        throw new IllegalStateException("Not implemented");
+//        Integer hours = (Integer) tokens.get(0).getValue();
+//        Integer minutes = (Integer) tokens.get(2).getValue();
+//
+//        LocalTime time = LocalTime.of(hours, minutes);
+//        return new TimeToken(time);
     }
 }

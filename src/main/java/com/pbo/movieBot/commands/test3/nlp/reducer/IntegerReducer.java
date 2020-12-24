@@ -8,6 +8,7 @@ import com.pbo.movieBot.nlp.generic.Token;
 
 import java.util.List;
 
+// TODO: Reimplement
 public class IntegerReducer implements Reducer<Integer> {
 
     @Override
@@ -39,7 +40,7 @@ public class IntegerReducer implements Reducer<Integer> {
     @Override
     public Token<Integer> reduce(List<Token<?>> tokens) {
         String value = (String) tokens.get(0).getValue();
-        return new IntegerToken(Integer.parseInt(value));
+        return new IntegerToken(Integer.parseInt(value), tokens.get(0).getStringPart());
     }
 
     private boolean isNumber(String s) {

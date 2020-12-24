@@ -22,26 +22,29 @@ public class TokenizerImpl implements Tokenizer {
     }
 
     private List<Token<?>> tokenizeWord(String word) {
-        ArrayList<Token<?>> tokens = new ArrayList<>();
-        String collected = "";
-
-        for(char c : word.toCharArray()) {
-            if(Character.isLetterOrDigit(c)) {
-                collected += c;
-            } else {
-                if(!collected.equals("")) {
-                    tokens.add(new StringToken(collected));
-                }
-                tokens.add(new CharacterToken(c));
-                collected = "";
-            }
-        }
-
-        if(!collected.equals("")) {
-            tokens.add(new StringToken(collected));
-        }
-
-        return tokens;
+        // TODO: Reimplement
+        throw new IllegalStateException("Not implemented");
+//
+//        ArrayList<Token<?>> tokens = new ArrayList<>();
+//        String collected = "";
+//
+//        for(char c : word.toCharArray()) {
+//            if(Character.isLetterOrDigit(c)) {
+//                collected += c;
+//            } else {
+//                if(!collected.equals("")) {
+//                    tokens.add(new StringToken(collected));
+//                }
+//                tokens.add(new CharacterToken(c, String.valueOf(c)));
+//                collected = "";
+//            }
+//        }
+//
+//        if(!collected.equals("")) {
+//            tokens.add(new StringToken(collected));
+//        }
+//
+//        return tokens;
     }
 
 }

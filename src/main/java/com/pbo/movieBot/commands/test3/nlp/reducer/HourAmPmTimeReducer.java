@@ -10,6 +10,7 @@ import com.pbo.movieBot.nlp.generic.Token;
 import java.time.LocalTime;
 import java.util.List;
 
+// TODO: Reimplement
 public class HourAmPmTimeReducer implements Reducer<LocalTime> {
     @Override
     public Pattern getPattern() {
@@ -43,18 +44,25 @@ public class HourAmPmTimeReducer implements Reducer<LocalTime> {
 
     @Override
     public Token<LocalTime> reduce(List<Token<?>> list) {
-        Integer hour = (Integer) list.get(0).getValue();
-        String dayPart = (String) list.get(1).getValue();
 
-        if(hour == 12) {
-            hour = 0;
-        }
+//        Integer hour = (Integer) list.get(0).getValue();
+//        String dayPart = (String) list.get(1).getValue();
+//
+//        if(hour == 12) {
+//            hour = 0;
+//        }
+//
+//        if(dayPart.equals("pm")) {
+//            hour += 12;
+//        }
+//
+//        LocalTime time = LocalTime.of(hour, 00);
+//        return new TimeToken(time);
+        throw new IllegalStateException("Not implemented");
+    }
 
-        if(dayPart.equals("pm")) {
-            hour += 12;
-        }
-
-        LocalTime time = LocalTime.of(hour, 00);
-        return new TimeToken(time);
+    @Override
+    public List<Token<?>> reduceList(List<Token<?>> tokens) {
+        return null;
     }
 }

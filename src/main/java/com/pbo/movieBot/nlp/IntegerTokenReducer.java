@@ -3,9 +3,12 @@ package com.pbo.movieBot.nlp;
 import com.pbo.movieBot.nlp.generic.Pattern;
 import com.pbo.movieBot.nlp.generic.Reducer;
 import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.token.IntegerToken;
+import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.util.List;
 
+// TODO: Reimplement
 public class IntegerTokenReducer implements Reducer<Integer> {
     private Pattern pattern = createPattern();
 
@@ -22,7 +25,12 @@ public class IntegerTokenReducer implements Reducer<Integer> {
         StringToken token = (StringToken) tokens.get(0);
         String strValue = token.getValue();
         int intValue = Integer.parseInt(strValue);
-        return new IntegerToken(intValue);
+        return new IntegerToken(intValue, token.getStringPart());
+    }
+
+    @Override
+    public List<Token<?>> reduceList(List<Token<?>> tokens) {
+        return null;
     }
 
     private Pattern createPattern() {

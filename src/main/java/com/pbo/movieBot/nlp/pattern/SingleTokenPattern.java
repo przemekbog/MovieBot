@@ -1,4 +1,4 @@
-package com.pbo.movieBot.nlp;
+package com.pbo.movieBot.nlp.pattern;
 
 import com.pbo.movieBot.nlp.generic.Pattern;
 import com.pbo.movieBot.nlp.generic.Token;

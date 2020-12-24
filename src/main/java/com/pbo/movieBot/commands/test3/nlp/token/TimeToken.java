@@ -6,8 +6,9 @@ import java.sql.Time;
 import java.time.LocalTime;
 
 public class TimeToken extends Token<LocalTime> {
-    public TimeToken(LocalTime value) {
-        super(value);
+
+    public TimeToken(LocalTime value, String stringPart) {
+        super(value, stringPart);
     }
 
     @Override

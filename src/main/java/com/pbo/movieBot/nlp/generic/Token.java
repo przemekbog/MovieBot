@@ -2,9 +2,11 @@ package com.pbo.movieBot.nlp.generic;
 
 public class Token<T> {
     protected T value;
+    protected String stringPart;
 
-    public Token(T value) {
+    public Token(T value, String stringPart) {
         this.value = value;
+        this.stringPart = stringPart;
     }
 
     public T getValue() {

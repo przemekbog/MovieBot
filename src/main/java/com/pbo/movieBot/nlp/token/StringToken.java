@@ -1,16 +1,16 @@
-package com.pbo.movieBot.commands.test3.nlp.token;
+package com.pbo.movieBot.nlp.token;
 
 import com.pbo.movieBot.nlp.generic.Token;
 
-public class IntegerToken extends Token<Integer> {
+public class StringToken extends Token<String> {
 
-    public IntegerToken(Integer value, String stringPart) {
+    public StringToken(String value, String stringPart) {
         super(value, stringPart);
     }
 
     @Override
     public String toString() {
-        return "IntegerToken{" +
+        return "StringToken{" +
                 "value=" + value +
                 '}';
     }
