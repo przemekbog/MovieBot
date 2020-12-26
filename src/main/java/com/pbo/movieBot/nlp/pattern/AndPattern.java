@@ -58,7 +58,7 @@ public class AndPattern implements Pattern {
     public boolean arePatternsValid(List<Pattern> patterns) {
         for (Pattern pattern : patterns) {
             int firstTokenCount = patterns.get(0).getTokenCount();
-            
+
             if (pattern.getTokenCount() != firstTokenCount) {
                 return false;
             }
