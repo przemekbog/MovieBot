@@ -22,7 +22,7 @@ public class IterativeListReducer implements ListReducer {
         int patternSize = pattern.getTokenCount();
 
         int index = 0;
-        while(index < tokens.size() - patternSize) {
+        while(index <= tokens.size() - patternSize) {
             List<Token<?>> part = tokens.subList(index, index + patternSize);
 
             if(pattern.matches(part)) {

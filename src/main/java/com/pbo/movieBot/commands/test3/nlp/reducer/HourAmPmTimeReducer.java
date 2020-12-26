@@ -1,5 +1,6 @@
 package com.pbo.movieBot.commands.test3.nlp.reducer;
 
+import com.pbo.movieBot.commands.test3.nlp.token.TimeToken;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
@@ -44,19 +45,19 @@ public class HourAmPmTimeReducer implements Reducer<LocalTime> {
     @Override
     public Token<LocalTime> reduce(List<Token<?>> list) {
 
-//        Integer hour = (Integer) list.get(0).getValue();
-//        String dayPart = (String) list.get(1).getValue();
-//
-//        if(hour == 12) {
-//            hour = 0;
-//        }
-//
-//        if(dayPart.equals("pm")) {
-//            hour += 12;
-//        }
-//
-//        LocalTime time = LocalTime.of(hour, 00);
-//        return new TimeToken(time);
-        throw new IllegalStateException("Not implemented");
+        Integer hour = (Integer) list.get(0).getValue();
+        String dayPart = (String) list.get(1).getValue();
+
+        if(hour == 12) {
+            hour = 0;
+        }
+
+        if(dayPart.equals("pm")) {
+            hour += 12;
+        }
+
+        LocalTime time = LocalTime.of(hour, 00);
+        String stringPart = list.get(0).getStringPart() + list.get(1).getStringPart();
+        return new TimeToken(time, stringPart);
     }
 }

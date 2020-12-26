@@ -34,7 +34,8 @@ public class TestCommand3 extends Command {
         pipeline.setParser(new ParserImpl());
 
         MessageChannel channel = event.getChannel();
-        channel.sendMessage(pipeline.process(args).toString()).queue();
+        List<Token<?>> shit = pipeline.process(args);
+        channel.sendMessage(shit.toString()).queue();
     }
 
 

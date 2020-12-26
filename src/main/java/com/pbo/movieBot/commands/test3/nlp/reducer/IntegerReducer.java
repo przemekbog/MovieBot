@@ -3,38 +3,32 @@ package com.pbo.movieBot.commands.test3.nlp.reducer;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.pattern.AndPattern;
+import com.pbo.movieBot.nlp.pattern.ClassPattern;
 import com.pbo.movieBot.nlp.token.IntegerToken;
 import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.util.List;
 
-// TODO: Reimplement
 public class IntegerReducer implements Reducer<Integer> {
 
     @Override
     public Pattern getPattern() {
-        return new Pattern() {
-            @Override
-            public int getTokenCount() {
-                return 1;
-            }
+        return new AndPattern(
+                new ClassPattern(StringToken.class),
+                new Pattern() {
+                    @Override
+                    public int getTokenCount() {
+                        return 1;
+                    }
 
-            @Override
-            public boolean matches(List<Token<?>> tokens) {
-                Token t = tokens.get(0);
-                if(!(t instanceof StringToken)) {
-                    return false;
+                    @Override
+                    public boolean matches(List<Token<?>> tokens) {
+                        String value = (String) tokens.get(0).getValue();
+                        return isNumber(value);
+                    }
                 }
-
-                StringToken token = (StringToken) t;
-                String value = token.getValue();
-                if(!isNumber(value)) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        };
+        );
     }
 
     @Override
