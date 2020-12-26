@@ -16,7 +16,7 @@ public class IterativeListReducer implements ListReducer {
     }
 
     @Override
-    public List<Token<?>> reduce(List<Token<?>> tokens) {
+    public List<Token<?>> reduceList(List<Token<?>> tokens) {
         ArrayList<Token<?>> reducedList = new ArrayList<>();
         Pattern pattern = reducer.getPattern();
         int patternSize = pattern.getTokenCount();

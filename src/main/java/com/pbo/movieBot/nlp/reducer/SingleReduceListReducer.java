@@ -18,7 +18,7 @@ public class SingleReduceListReducer implements ListReducer {
     }
 
     @Override
-    public List<Token<?>> reduce(List<Token<?>> tokens) {
+    public List<Token<?>> reduceList(List<Token<?>> tokens) {
         return singleReduce(tokens, mode);
     }
 

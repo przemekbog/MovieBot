@@ -9,6 +9,7 @@ import com.pbo.movieBot.commands.test3.nlp.reducer.IntegerReducer;
 import com.pbo.movieBot.commands.test3.nlp.tokenizer.TokenizerImpl;
 import com.pbo.movieBot.nlp.NLPPipeline;
 import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.reducer.IterativeListReducer;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.List;
@@ -25,10 +26,10 @@ public class TestCommand3 extends Command {
 
         NLPPipeline<List<Token<?>>> pipeline = new NLPPipeline<>();
         pipeline.setTokenizer(new TokenizerImpl());
-        pipeline.setReducers(
-                new IntegerReducer(),
-                new HourMinuteTimeReducer(),
-                new HourAmPmTimeReducer()
+        pipeline.setListReducers(
+                new IterativeListReducer(new IntegerReducer()),
+                new IterativeListReducer(new HourMinuteTimeReducer()),
+                new IterativeListReducer(new HourAmPmTimeReducer())
         );
         pipeline.setParser(new ParserImpl());
 

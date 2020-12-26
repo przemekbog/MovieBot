@@ -28,11 +28,6 @@ public class IntegerTokenReducer implements Reducer<Integer> {
         return new IntegerToken(intValue, token.getStringPart());
     }
 
-    @Override
-    public List<Token<?>> reduceList(List<Token<?>> tokens) {
-        return null;
-    }
-
     private Pattern createPattern() {
         return new Pattern() {
             @Override
