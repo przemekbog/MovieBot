@@ -1,15 +1,16 @@
 package com.pbo.movieBot.commands.test3.nlp.reducer;
 
-import com.pbo.movieBot.commands.test3.nlp.token.IntegerToken;
-import com.pbo.movieBot.commands.test3.nlp.token.StringToken;
 import com.pbo.movieBot.commands.test3.nlp.token.TimeToken;
-import com.pbo.movieBot.nlp.generic.Pattern;
-import com.pbo.movieBot.nlp.generic.Reducer;
-import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.base.Pattern;
+import com.pbo.movieBot.nlp.base.Reducer;
+import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.token.IntegerToken;
+import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.time.LocalTime;
 import java.util.List;
 
+// TODO: Reimplement
 public class HourAmPmTimeReducer implements Reducer<LocalTime> {
     @Override
     public Pattern getPattern() {
@@ -43,6 +44,7 @@ public class HourAmPmTimeReducer implements Reducer<LocalTime> {
 
     @Override
     public Token<LocalTime> reduce(List<Token<?>> list) {
+
         Integer hour = (Integer) list.get(0).getValue();
         String dayPart = (String) list.get(1).getValue();
 
@@ -55,6 +57,7 @@ public class HourAmPmTimeReducer implements Reducer<LocalTime> {
         }
 
         LocalTime time = LocalTime.of(hour, 00);
-        return new TimeToken(time);
+        String stringPart = list.get(0).getStringPart() + list.get(1).getStringPart();
+        return new TimeToken(time, stringPart);
     }
 }

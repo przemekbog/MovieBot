@@ -1,10 +1,11 @@
-package com.pbo.movieBot.commands.test3.nlp.token;
+package com.pbo.movieBot.nlp.token;
 
-import com.pbo.movieBot.nlp.generic.Token;
+import com.pbo.movieBot.nlp.base.Token;
 
 public class StringToken extends Token<String> {
-    public StringToken(String value) {
-        super(value);
+
+    public StringToken(String value, String stringPart) {
+        super(value, stringPart);
     }
 
     @Override

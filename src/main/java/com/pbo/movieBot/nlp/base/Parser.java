@@ -1,4 +1,4 @@
-package com.pbo.movieBot.nlp.generic;
+package com.pbo.movieBot.nlp.base;
 
 import java.util.List;
 
