@@ -1,10 +1,10 @@
 package com.pbo.movieBot.commands.test3.nlp.reducer;
 
-import com.pbo.movieBot.commands.test3.nlp.token.IntegerToken;
-import com.pbo.movieBot.commands.test3.nlp.token.StringToken;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.token.IntegerToken;
+import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -58,10 +58,5 @@ public class HourAmPmTimeReducer implements Reducer<LocalTime> {
 //        LocalTime time = LocalTime.of(hour, 00);
 //        return new TimeToken(time);
         throw new IllegalStateException("Not implemented");
-    }
-
-    @Override
-    public List<Token<?>> reduceList(List<Token<?>> tokens) {
-        return null;
     }
 }

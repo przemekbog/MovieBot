@@ -1,4 +1,4 @@
-package com.pbo.movieBot.commands.test3.nlp.token;
+package com.pbo.movieBot.nlp.token;
 
 import com.pbo.movieBot.nlp.base.Token;
 
