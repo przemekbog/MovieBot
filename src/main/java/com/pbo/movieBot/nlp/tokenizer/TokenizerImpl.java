@@ -1,8 +1,9 @@
-package com.pbo.movieBot.commands.test3.nlp.tokenizer;
+package com.pbo.movieBot.nlp.tokenizer;
 
 import com.pbo.movieBot.nlp.base.Token;
 import com.pbo.movieBot.nlp.base.Tokenizer;
 import com.pbo.movieBot.nlp.token.CharacterToken;
+import com.pbo.movieBot.nlp.token.IntegerToken;
 import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.util.ArrayList;
@@ -14,8 +15,22 @@ public class TokenizerImpl implements Tokenizer {
         ArrayList<Token<?>> tokens = new ArrayList<>();
 
         String collectedString = "";
-        for(Character c : s.toCharArray()) {
-            if(Character.isLetterOrDigit(c)) {
+        for(int i = 0; i < s.length(); i++) {
+            Character c = s.charAt(i);
+
+            if(Character.isDigit(c)) {
+                String number = "";
+
+                while(Character.isDigit(c)) {
+                    number += c;
+                    i++;
+                    c = s.charAt(i);
+                }
+
+                tokens.add(new IntegerToken(Integer.parseInt(number), number));
+            }
+
+            if(Character.isLetter(c)) {
                 collectedString += c;
                 continue;
             }

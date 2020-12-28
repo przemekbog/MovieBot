@@ -18,7 +18,7 @@ public class Token<T> {
     }
 
     public String getStringPart() {
-        return value.toString();
+        return stringPart;
     }
 
     public void accept(Visitor visitor) {

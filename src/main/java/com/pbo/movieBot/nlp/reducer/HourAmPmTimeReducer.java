@@ -1,6 +1,6 @@
-package com.pbo.movieBot.commands.test3.nlp.reducer;
+package com.pbo.movieBot.nlp.reducer;
 
-import com.pbo.movieBot.commands.test3.nlp.token.TimeToken;
+import com.pbo.movieBot.nlp.token.TimeToken;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
