@@ -1,5 +1,7 @@
 package com.pbo.movieBot.command.base;
 
+import java.util.List;
+
 public class NullCommandHelp implements CommandHelp {
     @Override
     public String getSyntax() {
@@ -7,12 +9,17 @@ public class NullCommandHelp implements CommandHelp {
     }
 
     @Override
-    public String getShortHelp() {
+    public String getShortInfo() {
         return "N/A";
     }
 
     @Override
-    public String getDetailedHelp() {
+    public String getDetailedInfo() {
         return "N/A";
+    }
+
+    @Override
+    public List<String> getUseExamples() {
+        return List.of(/* emptiness */);
     }
 }

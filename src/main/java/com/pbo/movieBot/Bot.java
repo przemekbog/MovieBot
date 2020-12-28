@@ -1,5 +1,6 @@
 package com.pbo.movieBot;
 
+import com.pbo.movieBot.commands.Context;
 import com.pbo.movieBot.commands.test1.TestCommand1;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
@@ -16,7 +17,7 @@ import javax.security.auth.login.LoginException;
 public class Bot {
     public static void main(String[] args) throws LoginException {
 
-        CommandExecutorImpl executor = new CommandExecutorImpl(new Object());
+        CommandExecutorImpl<Context> executor = new CommandExecutorImpl<>(new Context());
         executor.addCommands(
                 new TestCommand1(),
                 new TestCommand2(),
