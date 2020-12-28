@@ -1,4 +1,4 @@
-package com.pbo.movieBot.commands.test3.nlp.reducer;
+package com.pbo.movieBot.nlp.reducer;
 
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;

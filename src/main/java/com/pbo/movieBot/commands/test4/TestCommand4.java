@@ -2,6 +2,18 @@ package com.pbo.movieBot.commands.test4;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
+import com.pbo.movieBot.commands.test3.nlp.parser.ParserImpl;
+import com.pbo.movieBot.nlp.NLPPipeline;
+import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.listReducer.IterativeListReducer;
+import com.pbo.movieBot.nlp.reducer.HourAmPmTimeReducer;
+import com.pbo.movieBot.nlp.reducer.HourMinuteTimeReducer;
+import com.pbo.movieBot.nlp.reducer.IntegerReducer;
+import com.pbo.movieBot.nlp.reducer.TimeAmPmReducer;
+import com.pbo.movieBot.nlp.tokenizer.TokenizerImpl;
+import net.dv8tion.jda.api.entities.MessageChannel;
+
+import java.util.List;
 
 public class TestCommand4 extends Command {
     @Override
@@ -11,6 +23,20 @@ public class TestCommand4 extends Command {
 
     @Override
     public void execute(CommandEvent event, Object context) {
-        event.getChannel().sendMessage("XD").queue();
+        String args = event.getArgs();
+
+        NLPPipeline<List<Token<?>>> pipeline = new NLPPipeline<>();
+        pipeline.setTokenizer(new TokenizerImpl());
+        pipeline.setListReducers(
+                new IterativeListReducer(new IntegerReducer()),
+                new IterativeListReducer(new HourMinuteTimeReducer()),
+                new IterativeListReducer(new TimeAmPmReducer()),
+                new IterativeListReducer(new HourAmPmTimeReducer())
+        );
+        pipeline.setParser(new ParserImpl());
+
+        MessageChannel channel = event.getChannel();
+        List<Token<?>> shit = pipeline.process(args);
+        channel.sendMessage(shit.toString()).queue();
     }
 }

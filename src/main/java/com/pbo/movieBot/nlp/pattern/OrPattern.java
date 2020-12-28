@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AndPattern implements Pattern {
-
+public class OrPattern implements Pattern {
     private List<Pattern> patterns;
     private int tokenCount;
 
-    public AndPattern(Pattern first, Pattern... other) {
+    public OrPattern(Pattern first, Pattern... other) {
         ArrayList<Pattern> patterns = new ArrayList<>();
         patterns.add(first);
         patterns.addAll(Arrays.asList(other));
@@ -20,7 +19,7 @@ public class AndPattern implements Pattern {
         setPatterns(patterns);
     }
 
-    public AndPattern(List<Pattern> patterns) {
+    public OrPattern(List<Pattern> patterns) {
         setPatterns(patterns);
     }
 
@@ -36,18 +35,18 @@ public class AndPattern implements Pattern {
         }
 
         for(Pattern pattern : patterns) {
-            if(!pattern.matches(tokens)) {
-                return false;
+            if(pattern.matches(tokens)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public void setPatterns(List<Pattern> patterns) {
         if(!arePatternsValid(patterns)) {
             throw new IllegalArgumentException(
-                    "All patterns in an AndPattern need to require the same amount of tokens"
+                    "All patterns in an OrPattern need to require the same amount of tokens"
             );
         }
 

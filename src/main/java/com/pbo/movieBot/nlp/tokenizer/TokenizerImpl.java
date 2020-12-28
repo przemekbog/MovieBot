@@ -1,4 +1,4 @@
-package com.pbo.movieBot.commands.test3.nlp.tokenizer;
+package com.pbo.movieBot.nlp.tokenizer;
 
 import com.pbo.movieBot.nlp.base.Token;
 import com.pbo.movieBot.nlp.base.Tokenizer;
