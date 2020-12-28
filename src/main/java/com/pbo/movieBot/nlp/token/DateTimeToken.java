@@ -14,4 +14,12 @@ public class DateTimeToken extends Token<LocalDateTime> {
     public DateTimeToken(LocalDate date, LocalTime time, String stringPart) {
         super(LocalDateTime.of(date, time), stringPart);
     }
+
+    @Override
+    public String toString() {
+        return "DateTimeToken{" +
+                "value=" + value +
+                ", stringPart='" + stringPart + '\'' +
+                '}';
+    }
 }

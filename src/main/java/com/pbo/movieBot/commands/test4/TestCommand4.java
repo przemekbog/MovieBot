@@ -49,7 +49,11 @@ public class TestCommand4 extends Command {
                 new TimeAmPmReducer(),
                 new HourMinuteTimeReducer(),
                 new DayMonthYearReducer(),
-                new NextSomethingDateReducer()
+                new NextSomethingDateReducer(),
+                new AtTimeReducer(),
+                new OnDateReducer(),
+                new TimeDateReducer(),
+                new DateTimeReducer()
         );
 
         return reducers.stream().
