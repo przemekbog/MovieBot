@@ -10,13 +10,19 @@ import javax.annotation.Nullable;
 
 public class CommandEvent {
     private MessageReceivedEvent event;
+    private CommandExecutor commandExecutor;
     private String commandName;
     private String args;
 
-    public CommandEvent(MessageReceivedEvent event, String command, String args) {
+    public CommandEvent(MessageReceivedEvent event, CommandExecutor commandExecutor, String command, String args) {
         this.event = event;
+        this.commandExecutor = commandExecutor;
         this.commandName = command;
         this.args = args;
+    }
+
+    public CommandExecutor getCommandExecutor() {
+        return commandExecutor;
     }
 
     public String getCommandName() {

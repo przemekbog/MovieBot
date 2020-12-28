@@ -5,7 +5,9 @@ import com.pbo.movieBot.command.base.CommandEvent;
 import com.pbo.movieBot.command.base.CommandExecutor;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandExecutorImpl<T> implements CommandExecutor {
@@ -26,6 +28,11 @@ public class CommandExecutorImpl<T> implements CommandExecutor {
         } else {
             sendCommandNotFoundMessage(event.getChannel());
         }
+    }
+
+    @Override
+    public List<Command> getCommands() {
+        return new ArrayList<>(commandMap.values());
     }
 
     public void addCommands(Command<T> first, Command<T>... other) {
