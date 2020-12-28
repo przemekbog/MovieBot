@@ -1,4 +1,4 @@
-package com.pbo.movieBot.nlp.reducer;
+package com.pbo.movieBot.nlp.listReducer;
 
 import com.pbo.movieBot.nlp.base.ListReducer;
 import com.pbo.movieBot.nlp.base.Pattern;

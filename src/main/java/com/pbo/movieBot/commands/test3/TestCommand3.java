@@ -9,7 +9,7 @@ import com.pbo.movieBot.commands.test3.nlp.reducer.IntegerReducer;
 import com.pbo.movieBot.commands.test3.nlp.tokenizer.TokenizerImpl;
 import com.pbo.movieBot.nlp.NLPPipeline;
 import com.pbo.movieBot.nlp.base.Token;
-import com.pbo.movieBot.nlp.reducer.IterativeListReducer;
+import com.pbo.movieBot.nlp.listReducer.IterativeListReducer;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 import java.util.List;
