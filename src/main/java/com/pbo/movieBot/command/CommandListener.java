@@ -33,7 +33,7 @@ public class CommandListener extends ListenerAdapter {
 
         String commandName = extractCommandName(fullMessage);
         String commandArgs = extractCommandArgs(fullMessage);
-        CommandEvent commandEvent = new CommandEvent(event, commandName, commandArgs);
+        CommandEvent commandEvent = new CommandEvent(event, executor, commandName, commandArgs);
         executor.execute(commandEvent);
     }
 
