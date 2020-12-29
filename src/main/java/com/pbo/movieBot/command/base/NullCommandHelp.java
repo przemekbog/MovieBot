@@ -4,8 +4,8 @@ import java.util.List;
 
 public class NullCommandHelp implements CommandHelp {
     @Override
-    public String getSyntax() {
-        return "N/A";
+    public List<String> getSyntaxList() {
+        return List.of();
     }
 
     @Override
