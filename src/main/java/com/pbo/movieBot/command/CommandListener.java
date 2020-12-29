@@ -57,7 +57,7 @@ public class CommandListener extends ListenerAdapter {
     }
 
     private String[] splitMessageBySpaces(String message) {
-        String messageWithoutPrefix = message.substring(prefix.length());
+        String messageWithoutPrefix = message.substring(prefix.length()).trim();
         String[] messageParts = messageWithoutPrefix.split(" ");
         return messageParts;
     }
