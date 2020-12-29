@@ -15,8 +15,7 @@ public class CommandListMessageCreator {
 
     public static Message getCommandListMessage(List<Command> commands) {
         List<Command> sortedCommands = sortCommands(commands);
-
-        MessageBuilder builder = new MessageBuilder(getBigHelpText());
+        MessageBuilder builder = new MessageBuilder();
 
         builder.appendCodeBlock(getBigHelpText(), "txt");
         for(Command command : sortedCommands) {
