@@ -8,6 +8,10 @@ import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.commands.test2.TestCommand2;
 import com.pbo.movieBot.commands.test3.TestCommand3;
 import com.pbo.movieBot.commands.test4.TestCommand4;
+import com.pbo.movieBot.movieApi.movie.Movie;
+import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieSaver;
+import com.pbo.movieBot.movieSaving.jsonSaver.JsonSaver;
 import com.pbo.movieBot.options.Configuration;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -17,7 +21,6 @@ import javax.security.auth.login.LoginException;
 
 public class Bot {
     public static void main(String[] args) throws LoginException {
-
         CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
         executor.addCommands(
                 new HelpCommand(),
