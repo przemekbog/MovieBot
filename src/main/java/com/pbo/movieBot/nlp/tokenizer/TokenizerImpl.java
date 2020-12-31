@@ -12,54 +12,90 @@ import java.util.List;
 public class TokenizerImpl implements Tokenizer {
     @Override
     public List<Token<?>> tokenize(String s) {
-
         ArrayList<Token<?>> tokens = new ArrayList<>();
 
-        String collectedString = "";
-        String collectedNum = "";
-        for(int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
+        String[] parts = s.split(" ");
+
+        for(int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            List<Token<?>> partTokens = tokenizePart(part);
+            Token<?> last = partTokens.get(partTokens.size() - 1);
+
+            if(i < parts.length - 1) {
+                last = addSpaceToStringPart(last);
+            }
+
+            partTokens.set(partTokens.size() - 1, last);
+            tokens.addAll(partTokens);
+        }
+
+        return tokens;
+    }
+
+    private List<Token<?>> tokenizePart(String part) {
+        ArrayList<Token<?>> tokens = new ArrayList<>();
+
+        int i = 0;
+        while(i < part.length()) {
+            Character c = part.charAt(i);
 
             if(Character.isDigit(c)) {
-                collectedNum += c;
+                String number = "";
+
+                while(i < part.length()) {
+                    c = part.charAt(i);
+
+                    if(!Character.isDigit(c)) {
+                        break;
+                    }
+
+                    number += c;
+                    i++;
+                }
+
+                tokens.add(new IntegerToken(Integer.parseInt(number), number));
                 continue;
             }
 
             if(Character.isLetter(c)) {
-                collectedString += c;
+                String text = "";
+
+                while(i < part.length()) {
+                    c = part.charAt(i);
+
+                    if(!Character.isLetter(c)) {
+                        break;
+                    }
+
+                    text += c;
+                    i++;
+                }
+
+                tokens.add(new StringToken(text, text));
                 continue;
             }
 
-            if(!collectedString.equals("")) {
-                tokens.add(new StringToken(collectedString, collectedString + " "));
-            }
-
-            if(!collectedNum.equals("")) {
-                String stringPart = collectedNum;
-
-                if(c.equals(' ')) {
-                    stringPart += ' ';
-                }
-
-                tokens.add(new IntegerToken(Integer.parseInt(collectedNum), stringPart));
-            }
-
-            if(!c.equals(' ')) {
-                tokens.add(new CharacterToken(c, c.toString()));
-            }
-
-            collectedString = "";
-            collectedNum = "";
-        }
-
-        if(!collectedString.equals("")) {
-            tokens.add(new StringToken(collectedString, collectedString));
-        }
-
-        if(!collectedNum.equals("")) {
-            tokens.add(new IntegerToken(Integer.parseInt(collectedNum), collectedNum));
+            tokens.add(new CharacterToken(c, c.toString()));
         }
 
         return tokens;
+    }
+
+    private Token<?> addSpaceToStringPart(Token<?> token) {
+        if(token instanceof StringToken) {
+            return new StringToken((String) token.getValue(), token.getStringPart() + " ");
+        }
+
+        if(token instanceof IntegerToken) {
+            return new IntegerToken((Integer) token.getValue(), token.getStringPart() + " ");
+        }
+
+        if(token instanceof CharacterToken) {
+            return new CharacterToken((Character) token.getValue(), token.getStringPart() + " ");
+        }
+
+        throw new IllegalArgumentException(
+                "The type of the token must be StringToken, IntegerToken, or CharacterToken"
+        );
     }
 }
