@@ -7,14 +7,14 @@ logging.captureStandardOutput LogLevel.INFO
 group 'com.pbo'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
     jcenter()
 }
-//
-//logging.captureStandardOutput(LogLevel.INFO)
+
+logging.captureStandardOutput(LogLevel.INFO)
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
