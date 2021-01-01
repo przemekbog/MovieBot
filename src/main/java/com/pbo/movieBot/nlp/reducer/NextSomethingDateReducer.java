@@ -11,7 +11,6 @@ import com.pbo.movieBot.nlp.token.DateToken;
 import com.pbo.movieBot.nlp.token.StringToken;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class NextSomethingDateReducer implements Reducer<LocalDate> {
@@ -42,19 +41,21 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
     public Token<LocalDate> reduce(List<Token<?>> tokens) {
         String chosenOption = (String) tokens.get(1).getValue();
 
-        LocalDate chosenDate;
-
-        // TODO: Change to the new switch expression.
-        switch (chosenOption) {
-            case "week":
-                chosenDate = getNextWeek();
-                break;
-            case "month":
-                chosenDate = getNextMonth();
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + chosenOption);
+        LocalDate chosenDate = switch (chosenOption) {
+            case "week" -> getNextWeek();
+            case "month" -> getNextMonth();
+            default -> throw new IllegalStateException("Unexpected value: " + chosenOption);
         };
+//        switch (chosenOption) {
+//            case "week":
+//                chosenDate = getNextWeek();
+//                break;
+//            case "month":
+//                chosenDate = getNextMonth();
+//                break;
+//            default:
+//                throw new IllegalStateException("Unexpected value: " + chosenOption);
+//        };
 
         String stringPart = tokens.get(0).getStringPart() + tokens.get(1).getStringPart();
 

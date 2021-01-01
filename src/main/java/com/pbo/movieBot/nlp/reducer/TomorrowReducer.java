@@ -25,13 +25,14 @@ public class TomorrowReducer implements Reducer<LocalDate> {
     private LocalDate getTomorrowDate() {
         LocalDate today = LocalDate.now();
         int year = today.getYear();
-        int dayOfYear = today.getDayOfYear();
+        int dayOfYear = today.getDayOfYear() + 1;
         int daysInYear = today.lengthOfYear();
 
-        if(dayOfYear >= daysInYear) {
-            return LocalDate.ofYearDay(year + 1, 1);
-        } else {
-            return LocalDate.ofYearDay(year, dayOfYear + 1);
+        if(dayOfYear > daysInYear) {
+            dayOfYear = 1;
+            year++;
         }
+
+        return LocalDate.ofYearDay(year, dayOfYear);
     }
 }
