@@ -49,6 +49,7 @@ public class TestCommand4 extends Command {
                 new TimeAmPmReducer(),
                 new HourMinuteTimeReducer(),
                 new DayMonthYearReducer(),
+                new OrdinalReducer(),
                 new MonthReducer(),
                 new NextSomethingDateReducer(),
                 new TodayReducer(),
