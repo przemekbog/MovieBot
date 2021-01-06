@@ -76,6 +76,7 @@ public class TokenizerImpl implements Tokenizer {
             }
 
             tokens.add(new CharacterToken(c, c.toString()));
+            i++;
         }
 
         return tokens;
