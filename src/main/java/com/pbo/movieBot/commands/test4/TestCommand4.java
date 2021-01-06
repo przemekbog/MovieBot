@@ -45,10 +45,14 @@ public class TestCommand4 extends Command {
         List<Reducer> reducers = List.of(
                 new IntegerReducer(),
                 new OrdinalReducer(),
+
                 new HourMinuteTimeReducer(),
                 new HourAmPmTimeReducer(),
                 new TimeAmPmReducer(),
+                new ThisTimeReducer(),
                 new HourMinuteTimeReducer(),
+                new AtTimeReducer(),
+
                 new MonthReducer(),
                 new DayMonthWordYearReducer(),
                 new DayOfMonthReducer(),
@@ -56,8 +60,8 @@ public class TestCommand4 extends Command {
                 new NextSomethingDateReducer(),
                 new TodayReducer(),
                 new TomorrowReducer(),
-                new AtTimeReducer(),
                 new OnDateReducer(),
+
                 new TimeDateReducer(),
                 new DateTimeReducer()
         );
