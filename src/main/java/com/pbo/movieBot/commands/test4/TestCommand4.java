@@ -50,7 +50,6 @@ public class TestCommand4 extends Command {
                 new HourAmPmTimeReducer(),
                 new TimeAmPmReducer(),
                 new ThisTimeReducer(),
-                new HourMinuteTimeReducer(),
                 new AtTimeReducer(),
 
                 new MonthReducer(),

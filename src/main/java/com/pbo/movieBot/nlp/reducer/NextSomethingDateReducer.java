@@ -3,10 +3,7 @@ package com.pbo.movieBot.nlp.reducer;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
-import com.pbo.movieBot.nlp.pattern.AndPattern;
-import com.pbo.movieBot.nlp.pattern.ClassPattern;
-import com.pbo.movieBot.nlp.pattern.ListPattern;
-import com.pbo.movieBot.nlp.pattern.SingleTokenPattern;
+import com.pbo.movieBot.nlp.pattern.*;
 import com.pbo.movieBot.nlp.token.DateToken;
 import com.pbo.movieBot.nlp.token.StringToken;
 
@@ -19,21 +16,11 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
         return new AndPattern(
                 new ListPattern(
                         new SingleTokenPattern(new StringToken("next", "")),
-                        new ClassPattern(StringToken.class)
-                ),
-                new Pattern() {
-                    @Override
-                    public int getTokenCount() {
-                        return 2;
-                    }
-
-                    @Override
-                    public boolean matches(List<Token<?>> tokens) {
-                        List<String> correctOptions = List.of("week", "month");
-                        String chosenOption = (String) tokens.get(1).getValue();
-                        return correctOptions.contains(chosenOption);
-                    }
-                }
+                        new OrPattern(
+                                new SingleTokenPattern(new StringToken("week", "")),
+                                new SingleTokenPattern(new StringToken("month", ""))
+                        )
+                )
         );
     }
 
@@ -46,16 +33,6 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
             case "month" -> getNextMonth();
             default -> throw new IllegalStateException("Unexpected value: " + chosenOption);
         };
-//        switch (chosenOption) {
-//            case "week":
-//                chosenDate = getNextWeek();
-//                break;
-//            case "month":
-//                chosenDate = getNextMonth();
-//                break;
-//            default:
-//                throw new IllegalStateException("Unexpected value: " + chosenOption);
-//        };
 
         String stringPart = tokens.get(0).getStringPart() + tokens.get(1).getStringPart();
 
@@ -67,10 +44,11 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
 
         int day = today.getDayOfYear() + 7;
         int year = today.getYear();
+        int daysInYear = today.lengthOfYear();
 
-        if(day >= 365) {
+        if(day > daysInYear) {
+            day = day % daysInYear;
             year++;
-            day = day % 365;
         }
 
         return LocalDate.ofYearDay(year, day);
@@ -83,9 +61,15 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
         int month = today.getMonth().getValue() + 1;
         int day = today.getDayOfMonth();
 
-        if(month >= 13) {
+        if(month > 12) {
             month = 1;
             year++;
+        }
+
+        LocalDate firstDayNextMonth = LocalDate.of(year, month, 1);
+        int daysInNextMonth = firstDayNextMonth.lengthOfMonth();
+        if(day > daysInNextMonth) {
+            day = daysInNextMonth;
         }
 
         return LocalDate.of(year, month, day);
