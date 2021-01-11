@@ -1,20 +1,31 @@
 package com.pbo.movieBot.movieSaving.fakeSaver;
 
-import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieSaving.base.MovieEntry;
 import com.pbo.movieBot.movieSaving.base.MovieSaver;
+import com.pbo.movieBot.movieSaving.base.filtering.MovieSpecification;
+import com.pbo.movieBot.movieSaving.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class FakeSaver implements MovieSaver {
 
     private List<MovieEntry> movieList = new ArrayList<>();
 
     public FakeSaver() {
+    }
+
+    @Override
+    public List<MovieEntry> getBySpecification(Specification<MovieEntry> specification) {
+        ArrayList<MovieEntry> collected = new ArrayList<>();
+
+        for(MovieEntry movie : movieList) {
+            if(specification.isSatisfied(movie)) {
+                collected.add(movie);
+            }
+        }
+
+        return collected;
     }
 
     @Override
@@ -84,4 +95,6 @@ public class FakeSaver implements MovieSaver {
     public void clear() {
         movieList.clear();
     }
+
+
 }

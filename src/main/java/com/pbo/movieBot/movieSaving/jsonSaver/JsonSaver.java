@@ -3,6 +3,7 @@ package com.pbo.movieBot.movieSaving.jsonSaver;
 import com.google.gson.Gson;
 import com.pbo.movieBot.movieSaving.base.MovieEntry;
 import com.pbo.movieBot.movieSaving.base.MovieSaver;
+import com.pbo.movieBot.movieSaving.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -19,6 +20,18 @@ public class JsonSaver implements MovieSaver {
         movieEntrySet.addAll(loadMovies());
     }
 
+    @Override
+    public List<MovieEntry> getBySpecification(Specification<MovieEntry> specification) {
+        ArrayList<MovieEntry> collected = new ArrayList<>();
+
+        for(MovieEntry movie : movieEntrySet) {
+            if(specification.isSatisfied(movie)) {
+                collected.add(movie);
+            }
+        }
+
+        return collected;
+    }
 
     @Override
     public int size() {
