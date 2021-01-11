@@ -3,51 +3,100 @@ package com.pbo.movieBot.movieSaving.jsonSaver;
 import com.google.gson.Gson;
 import com.pbo.movieBot.movieSaving.base.MovieEntry;
 import com.pbo.movieBot.movieSaving.base.MovieSaver;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.*;
 
 public class JsonSaver implements MovieSaver {
 
-    private Map<String, MovieEntry> movieEntryMap = new HashMap<>();
+    private Set<MovieEntry> movieEntrySet = new HashSet<>();
     private String filePath;
 
     public JsonSaver(String filePath) {
         this.filePath = filePath;
 
-        addAllMovies(loadMovies());
+        movieEntrySet.addAll(loadMovies());
+    }
+
+
+    @Override
+    public int size() {
+        return movieEntrySet.size();
     }
 
     @Override
-    public Collection<MovieEntry> getMovies() {
-        return movieEntryMap.values();
+    public boolean isEmpty() {
+        return movieEntrySet.isEmpty();
     }
 
     @Override
-    public Optional<MovieEntry> getMovie(String name) {
-        if(!movieEntryMap.containsKey(name)) {
-            return Optional.empty();
-        }
+    public boolean contains(Object o) {
+        return movieEntrySet.contains(o);
+    }
 
-        return Optional.of(movieEntryMap.get(name));
+    @NotNull
+    @Override
+    public Iterator<MovieEntry> iterator() {
+        return movieEntrySet.iterator();
+    }
+
+    @NotNull
+    @Override
+    public Object[] toArray() {
+        return movieEntrySet.toArray();
+    }
+
+    @NotNull
+    @Override
+    public <T> T[] toArray(@NotNull T[] a) {
+        return movieEntrySet.toArray(a);
     }
 
     @Override
-    public void addMovie(MovieEntry movie) {
-        movieEntryMap.put(movie.getTitle(), movie);
+    public boolean add(MovieEntry movieEntry) {
+        boolean result = movieEntrySet.add(movieEntry);
         saveMovies();
+        return result;
     }
 
     @Override
-    public void removeMovie(MovieEntry movie) {
-        movieEntryMap.remove(movie.getTitle(), movie);
+    public boolean remove(Object o) {
+        boolean result = movieEntrySet.remove(o);
         saveMovies();
+        return result;
     }
 
-    private void addAllMovies(List<MovieEntry> movies) {
-        for(MovieEntry movie : movies) {
-            movieEntryMap.put(movie.getTitle(), movie);
-        }
+    @Override
+    public boolean containsAll(@NotNull Collection<?> c) {
+        return movieEntrySet.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(@NotNull Collection<? extends MovieEntry> c) {
+        boolean result = movieEntrySet.addAll(c);
+        saveMovies();
+        return result;
+    }
+
+    @Override
+    public boolean removeAll(@NotNull Collection<?> c) {
+        boolean result = movieEntrySet.removeAll(c);
+        saveMovies();
+        return result;
+    }
+
+    @Override
+    public boolean retainAll(@NotNull Collection<?> c) {
+        boolean result = movieEntrySet.retainAll(c);
+        saveMovies();
+        return result;
+    }
+
+    @Override
+    public void clear() {
+        movieEntrySet.clear();
+        saveMovies();
     }
 
     private List<MovieEntry> loadMovies() {
@@ -55,15 +104,20 @@ public class JsonSaver implements MovieSaver {
     }
 
     private void saveMovies() {
-        MovieEntry[] movieEntries = getArrayFromList(new ArrayList<>(movieEntryMap.values()));
+        MovieEntry[] movieEntries = getArrayFromCollection(movieEntrySet);
         saveMoviesToFile(movieEntries, filePath);
     }
 
     private List<MovieEntry> getMoviesFromFile(String filePath) {
         try {
             FileReader reader = new FileReader(getMoviesFile());
+
             Gson gson = new Gson();
             MovieEntry[] movies = gson.fromJson(reader, MovieEntry[].class);
+            if(movies == null) {
+                movies = new MovieEntry[0];
+            }
+
             return List.of(movies);
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,9 +155,11 @@ public class JsonSaver implements MovieSaver {
         }
     }
 
-    private MovieEntry[] getArrayFromList(List<MovieEntry> movieEntries) {
+    private MovieEntry[] getArrayFromCollection(Collection<MovieEntry> movieEntries) {
         MovieEntry[] array = new MovieEntry[movieEntries.size()];
         movieEntries.toArray(array);
         return array;
     }
+
+
 }

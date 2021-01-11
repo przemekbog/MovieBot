@@ -18,23 +18,33 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Bot {
     public static void main(String[] args) throws LoginException {
-        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
-        executor.addCommands(
-                new HelpCommand(),
-                new TestCommand1(),
-                new TestCommand2(),
-                new TestCommand3(),
-                new TestCommand4()
-        );
+        MovieSaver saver = new JsonSaver("localData/reservations.json");
+        saver.clear();
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        saver.add(new MovieEntry("Tarzan", date, time));
+        saver.add(new MovieEntry("Tarzan", date, time));
+        saver.add(new MovieEntry("Shit", date, time));
 
-        CommandListener listener = new CommandListener(executor, "!");
-
-        JDABuilder.createLight(Configuration.getDiscordAPIKey(), GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
-                .addEventListeners(listener)
-                .setActivity(Activity.playing("Type !test"))
-                .build();
+//        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
+//        executor.addCommands(
+//                new HelpCommand(),
+//                new TestCommand1(),
+//                new TestCommand2(),
+//                new TestCommand3(),
+//                new TestCommand4()
+//        );
+//
+//        CommandListener listener = new CommandListener(executor, "!");
+//
+//        JDABuilder.createLight(Configuration.getDiscordAPIKey(), GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
+//                .addEventListeners(listener)
+//                .setActivity(Activity.playing("Type !test"))
+//                .build();
     }
 }
