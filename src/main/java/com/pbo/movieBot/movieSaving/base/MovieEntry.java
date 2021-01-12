@@ -10,22 +10,28 @@ public class MovieEntry {
     private String reservationDate;
     private String reservationTime;
 
-    public MovieEntry(String title, String reservationDate, String reservationTime) {
+    public MovieEntry(String title, LocalDate reservationDate, LocalTime reservationTime) {
         this.title = title;
-        this.reservationDate = reservationDate;
-        this.reservationTime = reservationTime;
+        this.reservationDate = reservationDate.toString();
+        this.reservationTime = reservationTime.toString();
+    }
+
+    public MovieEntry(String title, LocalDateTime dateTime) {
+        this.title = title;
+        this.reservationDate = dateTime.toLocalDate().toString();
+        this.reservationTime = dateTime.toLocalTime().toString();
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getReservationDate() {
-        return reservationDate;
+    public LocalDate getReservationDate() {
+        return LocalDate.parse(reservationDate);
     }
 
-    public String getReservationTime() {
-        return reservationTime;
+    public LocalTime getReservationTime() {
+        return LocalTime.parse(reservationTime);
     }
 
     @Override
