@@ -4,6 +4,7 @@ import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.commands.MovieBotContext;
 import com.pbo.movieBot.commands.help.HelpCommand;
+import com.pbo.movieBot.commands.info.InfoCommand;
 import com.pbo.movieBot.commands.test1.TestCommand1;
 import com.pbo.movieBot.commands.test2.TestCommand2;
 import com.pbo.movieBot.commands.test3.TestCommand3;
@@ -36,6 +37,7 @@ public class Bot {
         CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
         executor.addCommands(
                 new HelpCommand(),
+                new InfoCommand(),
                 new TestCommand1(),
                 new TestCommand2(),
                 new TestCommand3(),
