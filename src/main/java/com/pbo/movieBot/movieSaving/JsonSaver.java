@@ -1,4 +1,4 @@
-package com.pbo.movieBot.movieSaving.jsonSaver;
+package com.pbo.movieBot.movieSaving;
 
 import com.google.gson.Gson;
 import com.pbo.movieBot.movieSaving.base.MovieEntry;
