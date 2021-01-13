@@ -1,5 +1,7 @@
 package com.pbo.movieBot.commands.schedule.nlp;
 
+import com.pbo.movieBot.movieApi.MovieFetcher;
+import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieSaving.base.MovieReservation;
 import com.pbo.movieBot.nlp.base.Parser;
 import com.pbo.movieBot.nlp.base.Token;
@@ -18,11 +20,28 @@ public class ScheduleCommandParser implements Parser<MovieReservation> {
         List<Token<?>> titlePart = tokens.subList(0, lastIndex);
         String title = combineStringParts(titlePart);
 
+        if(!isTitleValid(title)) {
+            throw new IllegalArgumentException("Movie with given title must exist");
+        }
+
         DateTimeToken timeToken = (DateTimeToken) tokens.get(lastIndex);
         return new MovieReservation(title, timeToken.getValue());
     }
 
-    String combineStringParts(List<Token<?>> tokens) {
+    private boolean areValid(List<Token<?>> tokens) {
+        int lastIndex = tokens.size() - 1;
+        Token<?> lastToken = tokens.get(lastIndex);
+
+        return lastToken instanceof DateTimeToken;
+    }
+
+    private boolean isTitleValid(String title) {
+        MovieFetcher fetcher = MovieFetcher.withMovieTitle(title);
+        Movie movie = fetcher.fetch();
+        return !movie.getTitle().equals("N/A");
+    }
+
+    private String combineStringParts(List<Token<?>> tokens) {
         StringBuilder builder = new StringBuilder();
 
         for(Token<?> token : tokens) {
@@ -30,12 +49,5 @@ public class ScheduleCommandParser implements Parser<MovieReservation> {
         }
 
         return builder.toString();
-    }
-
-    boolean areValid(List<Token<?>> tokens) {
-        int lastIndex = tokens.size() - 1;
-        Token<?> lastToken = tokens.get(lastIndex);
-
-        return lastToken instanceof DateTimeToken;
     }
 }
