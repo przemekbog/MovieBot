@@ -44,11 +44,7 @@ public class CommandExecutorImpl<T> implements CommandExecutor {
 
     public void addCommand(Command<T> command) {
         commandMap.put(command.getName(), command);
-
-        String[] aliases = command.getAliases();
-        if(aliases.length != 0) {
-            addByAliases(command);
-        }
+        addByAliases(command);
     }
 
     private void sendCommandNotFoundMessage(MessageChannel channel) {
@@ -56,7 +52,7 @@ public class CommandExecutorImpl<T> implements CommandExecutor {
     }
 
     private void addByAliases(Command<T> command) {
-        String[] aliases = command.getAliases();
+        List<String> aliases = command.getAliases();
         for(String alias : aliases) {
             commandMap.put(alias, command);
         }
