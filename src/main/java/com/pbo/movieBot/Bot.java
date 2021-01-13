@@ -29,7 +29,7 @@ public class Bot {
 //
 //        System.out.println(saver.getBySpecification(new TitleSpecification("Tarzan")));
 
-        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
+        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext("localData/reservations.json"));
         executor.addCommands(
                 new HelpCommand(),
                 new InfoCommand(),

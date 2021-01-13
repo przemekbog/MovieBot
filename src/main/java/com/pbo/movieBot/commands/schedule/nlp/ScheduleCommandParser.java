@@ -1,5 +1,7 @@
 package com.pbo.movieBot.commands.schedule.nlp;
 
+import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidInputFormatException;
+import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidMovieTitleException;
 import com.pbo.movieBot.movieApi.MovieFetcher;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieSaving.base.MovieReservation;
@@ -12,8 +14,8 @@ import java.util.List;
 public class ScheduleCommandParser implements Parser<MovieReservation> {
     @Override
     public MovieReservation parse(List<Token<?>> tokens) {
-        if(!areValid(tokens)) {
-            throw new IllegalArgumentException("The last token must be a DateTimeToken");
+        if(!areTokensValid(tokens)) {
+            throw new InvalidInputFormatException("The last token must be a DateTimeToken");
         }
 
         int lastIndex = tokens.size() - 1;
@@ -21,14 +23,14 @@ public class ScheduleCommandParser implements Parser<MovieReservation> {
         String title = combineStringParts(titlePart);
 
         if(!isTitleValid(title)) {
-            throw new IllegalArgumentException("Movie with given title must exist");
+            throw new InvalidMovieTitleException("Movie with given title must exist");
         }
 
         DateTimeToken timeToken = (DateTimeToken) tokens.get(lastIndex);
         return new MovieReservation(title, timeToken.getValue());
     }
 
-    private boolean areValid(List<Token<?>> tokens) {
+    private boolean areTokensValid(List<Token<?>> tokens) {
         int lastIndex = tokens.size() - 1;
         Token<?> lastToken = tokens.get(lastIndex);
 
