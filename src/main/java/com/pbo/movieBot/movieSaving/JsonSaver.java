@@ -1,7 +1,7 @@
 package com.pbo.movieBot.movieSaving;
 
 import com.google.gson.Gson;
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieReservation;
 import com.pbo.movieBot.movieSaving.base.MovieSaver;
 import com.pbo.movieBot.movieSaving.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
@@ -11,20 +11,20 @@ import java.util.*;
 
 public class JsonSaver implements MovieSaver {
 
-    private Set<MovieEntry> movieEntrySet = new HashSet<>();
+    private Set<MovieReservation> movieReservationSet = new HashSet<>();
     private String filePath;
 
     public JsonSaver(String filePath) {
         this.filePath = filePath;
 
-        movieEntrySet.addAll(loadMovies());
+        movieReservationSet.addAll(loadMovies());
     }
 
     @Override
-    public List<MovieEntry> getBySpecification(Specification<MovieEntry> specification) {
-        ArrayList<MovieEntry> collected = new ArrayList<>();
+    public List<MovieReservation> getBySpecification(Specification<MovieReservation> specification) {
+        ArrayList<MovieReservation> collected = new ArrayList<>();
 
-        for(MovieEntry movie : movieEntrySet) {
+        for(MovieReservation movie : movieReservationSet) {
             if(specification.isSatisfied(movie)) {
                 collected.add(movie);
             }
@@ -35,100 +35,100 @@ public class JsonSaver implements MovieSaver {
 
     @Override
     public int size() {
-        return movieEntrySet.size();
+        return movieReservationSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return movieEntrySet.isEmpty();
+        return movieReservationSet.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return movieEntrySet.contains(o);
+        return movieReservationSet.contains(o);
     }
 
     @NotNull
     @Override
-    public Iterator<MovieEntry> iterator() {
-        return movieEntrySet.iterator();
+    public Iterator<MovieReservation> iterator() {
+        return movieReservationSet.iterator();
     }
 
     @NotNull
     @Override
     public Object[] toArray() {
-        return movieEntrySet.toArray();
+        return movieReservationSet.toArray();
     }
 
     @NotNull
     @Override
     public <T> T[] toArray(@NotNull T[] a) {
-        return movieEntrySet.toArray(a);
+        return movieReservationSet.toArray(a);
     }
 
     @Override
-    public boolean add(MovieEntry movieEntry) {
-        boolean result = movieEntrySet.add(movieEntry);
+    public boolean add(MovieReservation movieReservation) {
+        boolean result = movieReservationSet.add(movieReservation);
         saveMovies();
         return result;
     }
 
     @Override
     public boolean remove(Object o) {
-        boolean result = movieEntrySet.remove(o);
+        boolean result = movieReservationSet.remove(o);
         saveMovies();
         return result;
     }
 
     @Override
     public boolean containsAll(@NotNull Collection<?> c) {
-        return movieEntrySet.containsAll(c);
+        return movieReservationSet.containsAll(c);
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends MovieEntry> c) {
-        boolean result = movieEntrySet.addAll(c);
+    public boolean addAll(@NotNull Collection<? extends MovieReservation> c) {
+        boolean result = movieReservationSet.addAll(c);
         saveMovies();
         return result;
     }
 
     @Override
     public boolean removeAll(@NotNull Collection<?> c) {
-        boolean result = movieEntrySet.removeAll(c);
+        boolean result = movieReservationSet.removeAll(c);
         saveMovies();
         return result;
     }
 
     @Override
     public boolean retainAll(@NotNull Collection<?> c) {
-        boolean result = movieEntrySet.retainAll(c);
+        boolean result = movieReservationSet.retainAll(c);
         saveMovies();
         return result;
     }
 
     @Override
     public void clear() {
-        movieEntrySet.clear();
+        movieReservationSet.clear();
         saveMovies();
     }
 
-    private List<MovieEntry> loadMovies() {
+    private List<MovieReservation> loadMovies() {
         return getMoviesFromFile(filePath);
     }
 
     private void saveMovies() {
-        MovieEntry[] movieEntries = getArrayFromCollection(movieEntrySet);
+        MovieReservation[] movieEntries = getArrayFromCollection(movieReservationSet);
         saveMoviesToFile(movieEntries, filePath);
     }
 
-    private List<MovieEntry> getMoviesFromFile(String filePath) {
+    private List<MovieReservation> getMoviesFromFile(String filePath) {
         try {
             FileReader reader = new FileReader(getMoviesFile());
 
             Gson gson = new Gson();
-            MovieEntry[] movies = gson.fromJson(reader, MovieEntry[].class);
+            MovieReservation[] movies = gson.fromJson(reader, MovieReservation[].class);
             if(movies == null) {
-                movies = new MovieEntry[0];
+                movies = new MovieReservation[0];
             }
 
             return List.of(movies);
@@ -138,7 +138,7 @@ public class JsonSaver implements MovieSaver {
         }
     }
 
-    private void saveMoviesToFile(MovieEntry[] movies, String filePath) {
+    private void saveMoviesToFile(MovieReservation[] movies, String filePath) {
         try {
             FileWriter writer = new FileWriter(getMoviesFile());
 
@@ -168,8 +168,8 @@ public class JsonSaver implements MovieSaver {
         }
     }
 
-    private MovieEntry[] getArrayFromCollection(Collection<MovieEntry> movieEntries) {
-        MovieEntry[] array = new MovieEntry[movieEntries.size()];
+    private MovieReservation[] getArrayFromCollection(Collection<MovieReservation> movieEntries) {
+        MovieReservation[] array = new MovieReservation[movieEntries.size()];
         movieEntries.toArray(array);
         return array;
     }

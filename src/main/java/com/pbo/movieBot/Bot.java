@@ -9,18 +9,12 @@ import com.pbo.movieBot.commands.test1.TestCommand1;
 import com.pbo.movieBot.commands.test2.TestCommand2;
 import com.pbo.movieBot.commands.test3.TestCommand3;
 import com.pbo.movieBot.commands.test4.TestCommand4;
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
-import com.pbo.movieBot.movieSaving.base.MovieSaver;
-import com.pbo.movieBot.movieSaving.base.filtering.TitleSpecification;
-import com.pbo.movieBot.movieSaving.JsonSaver;
 import com.pbo.movieBot.options.Configuration;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Bot {
     public static void main(String[] args) throws LoginException {

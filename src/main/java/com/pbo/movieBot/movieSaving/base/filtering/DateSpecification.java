@@ -1,10 +1,10 @@
 package com.pbo.movieBot.movieSaving.base.filtering;
 
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieReservation;
 
 import java.time.LocalDate;
 
-public class DateSpecification implements Specification<MovieEntry> {
+public class DateSpecification implements Specification<MovieReservation> {
     private LocalDate date;
 
     public DateSpecification(LocalDate date) {
@@ -12,7 +12,7 @@ public class DateSpecification implements Specification<MovieEntry> {
     }
 
     @Override
-    public boolean isSatisfied(MovieEntry obj) {
+    public boolean isSatisfied(MovieReservation obj) {
         LocalDate otherDate = obj.getReservationDate();
         return otherDate.equals(date);
     }

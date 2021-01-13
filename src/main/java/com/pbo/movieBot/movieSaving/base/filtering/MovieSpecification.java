@@ -1,5 +1,5 @@
 package com.pbo.movieBot.movieSaving.base.filtering;
 
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieReservation;
 
-public interface MovieSpecification extends Specification<MovieEntry> { }
+public interface MovieSpecification extends Specification<MovieReservation> { }

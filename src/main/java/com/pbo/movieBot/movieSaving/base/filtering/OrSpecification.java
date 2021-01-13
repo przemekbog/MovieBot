@@ -1,7 +1,5 @@
 package com.pbo.movieBot.movieSaving.base.filtering;
 
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
-
 import java.util.List;
 
 public class OrSpecification<T> implements Specification<T> {

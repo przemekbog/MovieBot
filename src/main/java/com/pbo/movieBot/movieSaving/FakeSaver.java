@@ -1,8 +1,7 @@
 package com.pbo.movieBot.movieSaving;
 
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieReservation;
 import com.pbo.movieBot.movieSaving.base.MovieSaver;
-import com.pbo.movieBot.movieSaving.base.filtering.MovieSpecification;
 import com.pbo.movieBot.movieSaving.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,16 +9,16 @@ import java.util.*;
 
 public class FakeSaver implements MovieSaver {
 
-    private List<MovieEntry> movieList = new ArrayList<>();
+    private List<MovieReservation> movieList = new ArrayList<>();
 
     public FakeSaver() {
     }
 
     @Override
-    public List<MovieEntry> getBySpecification(Specification<MovieEntry> specification) {
-        ArrayList<MovieEntry> collected = new ArrayList<>();
+    public List<MovieReservation> getBySpecification(Specification<MovieReservation> specification) {
+        ArrayList<MovieReservation> collected = new ArrayList<>();
 
-        for(MovieEntry movie : movieList) {
+        for(MovieReservation movie : movieList) {
             if(specification.isSatisfied(movie)) {
                 collected.add(movie);
             }
@@ -45,7 +44,7 @@ public class FakeSaver implements MovieSaver {
 
     @NotNull
     @Override
-    public Iterator<MovieEntry> iterator() {
+    public Iterator<MovieReservation> iterator() {
         return movieList.iterator();
     }
 
@@ -62,8 +61,8 @@ public class FakeSaver implements MovieSaver {
     }
 
     @Override
-    public boolean add(MovieEntry movieEntry) {
-        return movieList.add(movieEntry);
+    public boolean add(MovieReservation movieReservation) {
+        return movieList.add(movieReservation);
     }
 
     @Override
@@ -77,7 +76,7 @@ public class FakeSaver implements MovieSaver {
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends MovieEntry> c) {
+    public boolean addAll(@NotNull Collection<? extends MovieReservation> c) {
         return movieList.addAll(c);
     }
 
