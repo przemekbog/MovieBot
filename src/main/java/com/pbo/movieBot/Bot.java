@@ -5,22 +5,17 @@ import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.commands.MovieBotContext;
 import com.pbo.movieBot.commands.help.HelpCommand;
 import com.pbo.movieBot.commands.info.InfoCommand;
+import com.pbo.movieBot.commands.schedule.ScheduleCommand;
 import com.pbo.movieBot.commands.test1.TestCommand1;
 import com.pbo.movieBot.commands.test2.TestCommand2;
 import com.pbo.movieBot.commands.test3.TestCommand3;
 import com.pbo.movieBot.commands.test4.TestCommand4;
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
-import com.pbo.movieBot.movieSaving.base.MovieSaver;
-import com.pbo.movieBot.movieSaving.base.filtering.TitleSpecification;
-import com.pbo.movieBot.movieSaving.JsonSaver;
 import com.pbo.movieBot.options.Configuration;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Bot {
     public static void main(String[] args) throws LoginException {
@@ -34,10 +29,11 @@ public class Bot {
 //
 //        System.out.println(saver.getBySpecification(new TitleSpecification("Tarzan")));
 
-        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext());
+        CommandExecutorImpl<MovieBotContext> executor = new CommandExecutorImpl<>(new MovieBotContext("localData/reservations.json"));
         executor.addCommands(
                 new HelpCommand(),
                 new InfoCommand(),
+                new ScheduleCommand(),
                 new TestCommand1(),
                 new TestCommand2(),
                 new TestCommand3(),

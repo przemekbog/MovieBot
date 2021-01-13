@@ -1,8 +1,8 @@
 package com.pbo.movieBot.movieSaving.base.filtering;
 
-import com.pbo.movieBot.movieSaving.base.MovieEntry;
+import com.pbo.movieBot.movieSaving.base.MovieReservation;
 
-public class TitleSpecification implements Specification<MovieEntry> {
+public class TitleSpecification implements Specification<MovieReservation> {
     private String title;
 
     public TitleSpecification(String title) {
@@ -10,7 +10,7 @@ public class TitleSpecification implements Specification<MovieEntry> {
     }
 
     @Override
-    public boolean isSatisfied(MovieEntry obj) {
+    public boolean isSatisfied(MovieReservation obj) {
         String otherTitle = obj.getTitle();
         return otherTitle.equals(title);
     }

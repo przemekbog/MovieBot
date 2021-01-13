@@ -5,18 +5,18 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class MovieEntry {
+public class MovieReservation {
     private String title;
     private String reservationDate;
     private String reservationTime;
 
-    public MovieEntry(String title, LocalDate reservationDate, LocalTime reservationTime) {
+    public MovieReservation(String title, LocalDate reservationDate, LocalTime reservationTime) {
         this.title = title;
         this.reservationDate = reservationDate.toString();
         this.reservationTime = reservationTime.toString();
     }
 
-    public MovieEntry(String title, LocalDateTime dateTime) {
+    public MovieReservation(String title, LocalDateTime dateTime) {
         this.title = title;
         this.reservationDate = dateTime.toLocalDate().toString();
         this.reservationTime = dateTime.toLocalTime().toString();
@@ -38,7 +38,7 @@ public class MovieEntry {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovieEntry that = (MovieEntry) o;
+        MovieReservation that = (MovieReservation) o;
         return Objects.equals(title, that.title)
                 && Objects.equals(reservationDate, that.reservationDate)
                 && Objects.equals(reservationTime, that.reservationTime);
