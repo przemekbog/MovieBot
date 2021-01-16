@@ -6,7 +6,7 @@ import com.pbo.movieBot.commands.MovieBotContext;
 import com.pbo.movieBot.commands.schedule.nlp.SchedulingPipeline;
 import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidInputFormatException;
 import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidMovieTitleException;
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
 
 public class ScheduleCommand extends Command<MovieBotContext> {
     @Override

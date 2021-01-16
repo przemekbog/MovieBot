@@ -1,16 +1,25 @@
 package com.pbo.movieBot.commands;
 
-import com.pbo.movieBot.movieSaving.JsonSaver;
-import com.pbo.movieBot.movieSaving.base.MovieSaver;
+import com.pbo.movieBot.movieReservations.JsonSaver;
+import com.pbo.movieBot.movieReservations.base.ReservationSaver;
+
+import java.time.*;
+import java.util.*;
 
 public class MovieBotContext {
-    private MovieSaver saver;
+    private ReservationSaver saver;
 
     public MovieBotContext(String path) {
         saver = new JsonSaver(path);
     }
 
-    public MovieSaver getSaver() {
+    public ReservationSaver getSaver() {
         return saver;
+    }
+
+    private Date getDateFromLocalDateTime(LocalDateTime dateTime) {
+        ZonedDateTime zonedDateTime = dateTime.atZone(ZoneId.systemDefault());
+        Instant instant = zonedDateTime.toInstant();
+        return Date.from(instant);
     }
 }

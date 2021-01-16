@@ -1,4 +1,4 @@
-package com.pbo.movieBot.movieSaving.base.filtering;
+package com.pbo.movieBot.movieReservations.base.filtering;
 
 import java.util.List;
 

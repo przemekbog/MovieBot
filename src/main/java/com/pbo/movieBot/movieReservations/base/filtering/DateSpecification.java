@@ -1,6 +1,6 @@
-package com.pbo.movieBot.movieSaving.base.filtering;
+package com.pbo.movieBot.movieReservations.base.filtering;
 
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
 
 import java.time.LocalDate;
 

@@ -4,7 +4,7 @@ import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidInputFormatExcept
 import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidMovieTitleException;
 import com.pbo.movieBot.movieApi.MovieFetcher;
 import com.pbo.movieBot.movieApi.movie.Movie;
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.nlp.base.Parser;
 import com.pbo.movieBot.nlp.base.Token;
 import com.pbo.movieBot.nlp.token.DateTimeToken;

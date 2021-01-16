@@ -1,11 +1,9 @@
 package com.pbo.movieBot.commands.schedule.nlp;
 
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.nlp.NLPPipeline;
 import com.pbo.movieBot.nlp.base.ListReducer;
-import com.pbo.movieBot.nlp.base.Parser;
 import com.pbo.movieBot.nlp.base.Reducer;
-import com.pbo.movieBot.nlp.base.Tokenizer;
 import com.pbo.movieBot.nlp.listReducer.IterativeListReducer;
 import com.pbo.movieBot.nlp.reducer.*;
 import com.pbo.movieBot.nlp.tokenizer.TokenizerImpl;

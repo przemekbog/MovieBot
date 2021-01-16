@@ -1,4 +1,4 @@
-package com.pbo.movieBot.movieSaving.base;
+package com.pbo.movieBot.movieReservations.base;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,15 +1,15 @@
-package com.pbo.movieBot.movieSaving;
+package com.pbo.movieBot.movieReservations;
 
 import com.google.gson.Gson;
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
-import com.pbo.movieBot.movieSaving.base.MovieSaver;
-import com.pbo.movieBot.movieSaving.base.filtering.Specification;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.ReservationSaver;
+import com.pbo.movieBot.movieReservations.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.*;
 
-public class JsonSaver implements MovieSaver {
+public class JsonSaver implements ReservationSaver {
 
     private Set<MovieReservation> movieReservationSet = new HashSet<>();
     private String filePath;

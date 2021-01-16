@@ -1,13 +1,13 @@
-package com.pbo.movieBot.movieSaving;
+package com.pbo.movieBot.movieReservations;
 
-import com.pbo.movieBot.movieSaving.base.MovieReservation;
-import com.pbo.movieBot.movieSaving.base.MovieSaver;
-import com.pbo.movieBot.movieSaving.base.filtering.Specification;
+import com.pbo.movieBot.movieReservations.base.MovieReservation;
+import com.pbo.movieBot.movieReservations.base.ReservationSaver;
+import com.pbo.movieBot.movieReservations.base.filtering.Specification;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class FakeSaver implements MovieSaver {
+public class FakeSaver implements ReservationSaver {
 
     private List<MovieReservation> movieList = new ArrayList<>();
 
