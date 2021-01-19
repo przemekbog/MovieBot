@@ -2,7 +2,7 @@ package com.pbo.movieBot.commands.schedule;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
-import com.pbo.movieBot.commands.MovieBotContext;
+import com.pbo.movieBot.commands.context.MovieBotContext;
 import com.pbo.movieBot.commands.schedule.nlp.SchedulingPipeline;
 import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidInputFormatException;
 import com.pbo.movieBot.commands.schedule.nlp.exception.InvalidMovieTitleException;
