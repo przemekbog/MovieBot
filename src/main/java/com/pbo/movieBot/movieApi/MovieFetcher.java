@@ -1,7 +1,7 @@
 package com.pbo.movieBot.movieApi;
 
 import com.google.gson.Gson;
-import com.pbo.movieBot.options.Configuration;
+import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieApi.movie.MovieType;
 
