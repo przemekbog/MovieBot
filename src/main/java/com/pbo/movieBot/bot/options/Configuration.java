@@ -1,24 +1,18 @@
 package com.pbo.movieBot.bot.options;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-// Bad way to do this, but oh well... what can I do?
 public class Configuration {
-
+    private static final String PATH = "options/config.json";
     private static ConfigurationHolder instance;
 
     static {
-        Gson gson = new Gson();
-        try {
-            JsonReader reader = new JsonReader(new FileReader("options/config.json"));
-            instance = gson.fromJson(reader, ConfigurationHolder.class);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        instance = loadConfig();
     }
 
     public static String getMovieAPIKey() {
@@ -29,9 +23,62 @@ public class Configuration {
         return instance.getDiscordAPIKey();
     }
 
+    public static long getDefaultChannelId() {
+        return instance.getDefaultChannelId();
+    }
+
+    public static void setDefaultChannelId(long defaultChannelId) {
+        instance.setDefaultChannelId(defaultChannelId);
+    }
+
+    public static void save() {
+        try {
+            FileWriter writer = new FileWriter(getFile(PATH));
+
+            Gson gson = new Gson();
+            gson.toJson(instance, writer);
+
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static ConfigurationHolder loadConfig() {
+        try {
+            FileReader reader = new FileReader(getFile(PATH));
+
+            Gson gson = new Gson();
+            ConfigurationHolder holder = gson.fromJson(reader, ConfigurationHolder.class);
+            return holder;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Could not load the configuration file");
+        }
+    }
+
+    private static File getFile(String filePath) {
+        try {
+            File file = new File(filePath);
+
+            if(!file.exists()){
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+
+            return file;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IllegalStateException("Could not find nor create file with path: " + filePath);
+        }
+    }
+
     private static class ConfigurationHolder {
         private String movieAPIKey = "not set";
         private String discordAPIKey = "not set";
+        private String statusMessage = "";
+        private long defaultChannelId;
 
         public String getMovieAPIKey() {
             return movieAPIKey;
@@ -39,6 +86,18 @@ public class Configuration {
 
         public String getDiscordAPIKey() {
             return discordAPIKey;
+        }
+
+        public long getDefaultChannelId() {
+            return defaultChannelId;
+        }
+
+        public String getStatusMessage() {
+            return statusMessage;
+        }
+
+        public void setDefaultChannelId(long defaultChannelId) {
+            this.defaultChannelId = defaultChannelId;
         }
     }
 }
