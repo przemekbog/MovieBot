@@ -1,4 +1,4 @@
-package com.pbo.movieBot.bot.context;
+package com.pbo.movieBot.bot.context.announcement;
 
 import java.util.function.Consumer;
 

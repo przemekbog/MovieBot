@@ -1,13 +1,10 @@
 package com.pbo.movieBot.bot.context;
 
-import com.pbo.movieBot.bot.Bot;
+import com.pbo.movieBot.bot.context.announcement.AnnouncementManager;
 import com.pbo.movieBot.movieReservations.JsonSaver;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.movieReservations.base.ReservationSaver;
 import com.pbo.movieBot.movieReservations.base.filtering.AnySpecification;
-
-import java.time.LocalDateTime;
-import java.util.*;
 
 public class MovieBotContext {
     private ReservationSaver saver;

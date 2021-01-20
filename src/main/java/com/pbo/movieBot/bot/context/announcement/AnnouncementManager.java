@@ -1,4 +1,4 @@
-package com.pbo.movieBot.bot.context;
+package com.pbo.movieBot.bot.context.announcement;
 
 import com.pbo.movieBot.bot.Bot;
 import com.pbo.movieBot.bot.options.Configuration;
