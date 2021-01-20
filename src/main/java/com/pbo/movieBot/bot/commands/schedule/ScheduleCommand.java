@@ -22,8 +22,7 @@ public class ScheduleCommand extends Command<MovieBotContext> {
             MovieReservation reservation = pipeline.process(event.getArgs());
 
             event.getChannel().sendMessage(reservation.toString()).queue();
-            context.getSaver().add(reservation);
-            System.out.println(context.getSaver().toString());
+            context.addReservation(reservation);
         } catch(InvalidInputFormatException e) {
             sendInvalidInputMessage(event);
         } catch (InvalidMovieTitleException e) {
