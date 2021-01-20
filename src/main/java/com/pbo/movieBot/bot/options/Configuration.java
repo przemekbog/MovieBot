@@ -23,6 +23,10 @@ public class Configuration {
         return instance.getDiscordAPIKey();
     }
 
+    public static String getStatusMessage() {
+        return instance.getStatusMessage();
+    }
+
     public static long getDefaultChannelId() {
         return instance.getDefaultChannelId();
     }
@@ -71,33 +75,6 @@ public class Configuration {
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalStateException("Could not find nor create file with path: " + filePath);
-        }
-    }
-
-    private static class ConfigurationHolder {
-        private String movieAPIKey = "not set";
-        private String discordAPIKey = "not set";
-        private String statusMessage = "";
-        private long defaultChannelId;
-
-        public String getMovieAPIKey() {
-            return movieAPIKey;
-        }
-
-        public String getDiscordAPIKey() {
-            return discordAPIKey;
-        }
-
-        public long getDefaultChannelId() {
-            return defaultChannelId;
-        }
-
-        public String getStatusMessage() {
-            return statusMessage;
-        }
-
-        public void setDefaultChannelId(long defaultChannelId) {
-            this.defaultChannelId = defaultChannelId;
         }
     }
 }

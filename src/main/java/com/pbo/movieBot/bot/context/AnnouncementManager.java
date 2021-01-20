@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot.context;
 
 import com.pbo.movieBot.bot.Bot;
+import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,6 @@ import java.util.Set;
 
 public class AnnouncementManager {
     private HashMap<MovieReservation, Collection<TimedEvent>> announcements = new HashMap<>();
-    private String defaultChannel = "754324314366541896";
 
     public void schedule(Collection<MovieReservation> reservations) {
         for(MovieReservation reservation : reservations) {
@@ -21,6 +21,15 @@ public class AnnouncementManager {
 
     public void schedule(MovieReservation reservation) {
         announcements.put(reservation, getAnnouncementsForReservation(reservation));
+    }
+
+    public void remove(MovieReservation reservation) {
+        if(!announcements.containsKey(reservation)) {
+            return;
+        }
+
+        announcements.get(reservation).forEach((timedEvent -> timedEvent.cancel()));
+        announcements.remove(reservation);
     }
 
     public void clear() {
@@ -43,7 +52,7 @@ public class AnnouncementManager {
     }
 
     private void announceMovie(MovieReservation reservation) {
-        Bot.getJdaInstance().getTextChannelById(defaultChannel).sendMessage(reservation.getTitle()).queue();
-        announcements.remove(reservation);
+        Bot.getJdaInstance().getTextChannelById(Configuration.getDefaultChannelId()).sendMessage(reservation.getTitle()).queue();
+        remove(reservation);
     }
 }
