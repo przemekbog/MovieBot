@@ -3,7 +3,7 @@ package com.pbo.movieBot.bot.commands.info;
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
 import com.pbo.movieBot.command.base.CommandHelp;
-import com.pbo.movieBot.emoji.Emoji;
+import com.pbo.movieBot.jdaUtils.emoji.Emoji;
 import com.pbo.movieBot.movieApi.MovieFetcher;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieApi.movie.MovieRating;
@@ -43,7 +43,7 @@ public class InfoCommand extends Command {
     }
 
     private void sendMovieNotFoundMessage(MessageChannel channel) {
-        channel.sendMessage("Movie not found " + Emoji.DISAPPOINTED_FACE.getText()).queue();
+        channel.sendMessage("Movie not found " + Emoji.DISAPPOINTED_FACE).queue();
     }
 
     private MessageEmbed getInfoEmbedFromMovie(Movie movie) {
