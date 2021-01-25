@@ -4,7 +4,7 @@ import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
 import com.pbo.movieBot.command.base.CommandExecutor;
 import com.pbo.movieBot.command.base.CommandHelp;
-import com.pbo.movieBot.jdaUtils.emoji.Emoji;
+import com.pbo.movieBot.bot.utils.Emoji;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.*;
 

@@ -1,4 +1,4 @@
-package com.pbo.movieBot.jdaUtils.emoji;
+package com.pbo.movieBot.bot.utils;
 
 public final class Emoji {
     public static final String
