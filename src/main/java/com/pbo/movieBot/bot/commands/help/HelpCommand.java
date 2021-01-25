@@ -4,7 +4,7 @@ import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
 import com.pbo.movieBot.command.base.CommandExecutor;
 import com.pbo.movieBot.command.base.CommandHelp;
-import com.pbo.movieBot.emoji.Emoji;
+import com.pbo.movieBot.bot.utils.Emoji;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.*;
 
@@ -12,7 +12,6 @@ import java.util.*;
 import java.util.List;
 
 public class HelpCommand extends Command {
-    private static final String OK_HAND = Emoji.OK_HAND.getText();
 
     @Override
     public String getName() {
@@ -35,7 +34,7 @@ public class HelpCommand extends Command {
         }
 
         sendPrivateMessage(event.getAuthor(), message);
-        event.getMessage().addReaction(OK_HAND).queue();
+        event.getMessage().addReaction(Emoji.OK_HAND).queue();
     }
 
     private Message getAllCommandInfo(CommandEvent event) {
@@ -49,7 +48,7 @@ public class HelpCommand extends Command {
         Optional<Command> commandOptional = findCommandWithName(commands, name);
 
         if(!commandOptional.isPresent()) {
-            return new MessageBuilder().append("Command not found " + Emoji.DISAPPOINTED_FACE.getText()).build();
+            return new MessageBuilder().append("Command not found " + Emoji.DISAPPOINTED_FACE).build();
         }
 
         Command command = commandOptional.get();
