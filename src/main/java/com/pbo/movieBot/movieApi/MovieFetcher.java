@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieApi.movie.MovieType;
+import com.pbo.movieBot.movieApi.movie.PlotLength;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -74,13 +75,13 @@ public class MovieFetcher {
         return urlBuilder.getParameter("y");
     }
 
-    public MovieFetcher setPlot(String plot) {
-        urlBuilder.setParameter("plot", plot);
+    public MovieFetcher setPlotLength(PlotLength plot) {
+        urlBuilder.setParameter("plot", plot.getName());
         return this;
     }
 
-    public String getPlot() {
-        return urlBuilder.getParameter("plot");
+    public PlotLength getPlot() {
+        return PlotLength.byName(urlBuilder.getParameter("plot"));
     }
 
     public MovieFetcher setCallback(String callback) {

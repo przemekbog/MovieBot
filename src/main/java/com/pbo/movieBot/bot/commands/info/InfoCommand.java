@@ -7,6 +7,7 @@ import com.pbo.movieBot.command.base.CommandHelp;
 import com.pbo.movieBot.bot.utils.Emoji;
 import com.pbo.movieBot.movieApi.MovieFetcher;
 import com.pbo.movieBot.movieApi.movie.Movie;
+import com.pbo.movieBot.movieApi.movie.PlotLength;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
@@ -30,7 +31,7 @@ public class InfoCommand extends Command {
     public void execute(CommandEvent event, Object context) {
         String title = event.getArgs();
         MovieFetcher fetcher = MovieFetcher.withMovieTitle(title);
-        Movie movie = fetcher.setPlot("full").fetch();
+        Movie movie = fetcher.setPlotLength(PlotLength.FULL).fetch();
 
         MessageChannel channel = event.getChannel();
         if(movie.getTitle().equals("N/A")) {
