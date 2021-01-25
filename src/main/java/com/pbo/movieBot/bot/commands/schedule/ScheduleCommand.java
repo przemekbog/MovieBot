@@ -14,7 +14,6 @@ public class ScheduleCommand extends Command<MovieBotContext> {
         return "schedule";
     }
 
-
     @Override
     public void execute(CommandEvent event, MovieBotContext context) {
         try {
