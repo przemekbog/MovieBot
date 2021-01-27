@@ -7,6 +7,7 @@ public enum PlotLength {
     SHORT("short"),
     FULL("full");
 
+
     private static Map<String, PlotLength> nameToPlotLengthMap = new HashMap<>();
 
     private String name;
