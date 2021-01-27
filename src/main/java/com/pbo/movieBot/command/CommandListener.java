@@ -38,6 +38,10 @@ public class CommandListener extends ListenerAdapter {
     }
 
     private String extractPotentialPrefix(String message) {
+        if(message.length() == 0) {
+            return "";
+        }
+
         return message.substring(0, prefix.length());
     }
 

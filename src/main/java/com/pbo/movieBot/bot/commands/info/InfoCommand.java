@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import java.awt.*;
 
 public class InfoCommand extends Command {
-    private static final Color NICE_ORANGE = new Color(0xd49324);
+    private static final Color INFO_COLOR = new Color(0xFFC6C6C6, true);
     private MovieInfoEmbedFactory embedFactory = new MovieInfoEmbedFactory();
 
     @Override
@@ -39,7 +39,7 @@ public class InfoCommand extends Command {
             return;
         }
 
-        MessageEmbed infoMessage = embedFactory.getInfo(movie, NICE_ORANGE);
+        MessageEmbed infoMessage = embedFactory.getInfo(movie, INFO_COLOR);
         channel.sendMessage(infoMessage).queue();
     }
 

@@ -56,6 +56,7 @@ public class TestCommand4 extends Command {
                 new DayMonthWordYearReducer(),
                 new DayOfMonthReducer(),
                 new DayMonthYearReducer(),
+                new MonthDayReducer(),
                 new NextSomethingDateReducer(),
                 new TodayReducer(),
                 new TomorrowReducer(),

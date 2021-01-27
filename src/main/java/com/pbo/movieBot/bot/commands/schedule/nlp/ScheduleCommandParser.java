@@ -6,9 +6,12 @@ import com.pbo.movieBot.movieApi.MovieFetcher;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.nlp.base.Parser;
+import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Token;
+import com.pbo.movieBot.nlp.pattern.AndPattern;
 import com.pbo.movieBot.nlp.token.DateTimeToken;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ScheduleCommandParser implements Parser<MovieReservation> {
@@ -26,15 +29,19 @@ public class ScheduleCommandParser implements Parser<MovieReservation> {
             throw new InvalidMovieTitleException("Movie with given title must exist");
         }
 
-        DateTimeToken timeToken = (DateTimeToken) tokens.get(lastIndex);
-        return new MovieReservation(title, timeToken.getValue());
+        LocalDateTime dateTime = (LocalDateTime) tokens.get(lastIndex).getValue();
+        return new MovieReservation(title, dateTime);
     }
 
     private boolean areTokensValid(List<Token<?>> tokens) {
+        if(tokens.size() <= 1) {
+            return false;
+        }
+
         int lastIndex = tokens.size() - 1;
         Token<?> lastToken = tokens.get(lastIndex);
 
-        return lastToken instanceof DateTimeToken;
+        return lastToken instanceof SchedulingDateTimeToken;
     }
 
     private boolean isTitleValid(String title) {

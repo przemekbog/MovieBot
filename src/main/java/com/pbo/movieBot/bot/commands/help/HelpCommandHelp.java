@@ -15,7 +15,7 @@ public class HelpCommandHelp implements CommandHelp {
 
     @Override
     public String getShortInfo() {
-        return "see what a certain command does";
+        return "shows what different commands do";
     }
 
     @Override

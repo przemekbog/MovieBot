@@ -77,7 +77,7 @@ public class Movie {
         return Plot;
     }
 
-    public String getPoster() {
+    public String getPosterUrl() {
         return Poster;
     }
 

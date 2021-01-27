@@ -7,25 +7,26 @@ public enum PlotLength {
     SHORT("short"),
     FULL("full");
 
-    private static Map<String, PlotLength> nameToPlotTypeMap = new HashMap<>();
+
+    private static Map<String, PlotLength> nameToPlotLengthMap = new HashMap<>();
 
     private String name;
 
     static {
-        for(PlotLength plotLength : PlotLength.values()) {
-            nameToPlotTypeMap.put(plotLength.getName(), plotLength);
+        for(PlotLength movieType : PlotLength.values()) {
+            nameToPlotLengthMap.put(movieType.getAsString(), movieType);
         }
     }
 
-    PlotLength(String name) {
-        this.name = name;
+    PlotLength(String type) {
+        this.name = type;
     }
 
-    public static PlotLength byName(String name) {
-        return nameToPlotTypeMap.get(name);
+    public static PlotLength fromString(String name) {
+        return nameToPlotLengthMap.get(name);
     }
 
-    public String getName() {
+    public String getAsString() {
         return name;
     }
 }

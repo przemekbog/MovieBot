@@ -3,12 +3,9 @@ package com.pbo.movieBot.bot.utils;
 import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieApi.movie.MovieRating;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.EmbedType;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
 import java.awt.*;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 public class MovieInfoEmbedFactory {
 
@@ -30,6 +27,22 @@ public class MovieInfoEmbedFactory {
          setFooter(builder);
 
          return builder.build();
+    }
+
+    public MessageEmbed getShortInfo(Movie movie) {
+        return getShortInfo(movie, DEFAULT_COLOR);
+    }
+
+    public MessageEmbed getShortInfo(Movie movie, Color color) {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setColor(color);
+        setTitle(builder, movie);
+        appendPlot(builder, movie);
+        setPoster(builder, movie);
+        setFooter(builder);
+
+        return builder.build();
     }
 
     private void setTitle(EmbedBuilder builder, Movie movie) {
@@ -67,8 +80,8 @@ public class MovieInfoEmbedFactory {
     }
 
     private void setPoster(EmbedBuilder builder, Movie movie) {
-        if(!movie.getPoster().equals("N/A")) {
-            builder.setImage(movie.getPoster());
+        if(!movie.getPosterUrl().equals("N/A")) {
+            builder.setImage(movie.getPosterUrl());
         }
     }
 

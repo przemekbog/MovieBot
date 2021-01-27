@@ -76,12 +76,13 @@ public class MovieFetcher {
     }
 
     public MovieFetcher setPlotLength(PlotLength plot) {
-        urlBuilder.setParameter("plot", plot.getName());
+        urlBuilder.setParameter("plot", plot.getAsString());
         return this;
     }
 
-    public PlotLength getPlot() {
-        return PlotLength.byName(urlBuilder.getParameter("plot"));
+    public PlotLength getPlotLength() {
+        String string = urlBuilder.getParameter("plot");
+        return PlotLength.fromString(string);
     }
 
     public MovieFetcher setCallback(String callback) {
