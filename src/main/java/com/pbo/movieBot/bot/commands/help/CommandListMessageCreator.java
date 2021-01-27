@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -22,12 +23,6 @@ public class CommandListMessageCreator {
     private static MessageEmbed getCommandListEmbed(List<Command> commands) {
         List<Command> sortedCommands = sortCommands(commands);
         EmbedBuilder builder = new EmbedBuilder();
-
-        String codeBlock = String.format("""
-                ```
-                %s
-                ```
-                """, getBigHelpText());
 
         builder.setDescription(getBigHelpText());
         for(Command command : sortedCommands) {
@@ -49,8 +44,8 @@ public class CommandListMessageCreator {
                  _____ _____ __    _____
                 |  |  |   __|  |  |  _  |
                 |     |   __|  |__|   __|
-                |__|__|_____|_____|__|                                  \
+                |__|__|_____|_____|__|                                  \s
                 ```
-                """; // Backslash is there on purpose. Do not remove!
+                """;
     }
 }

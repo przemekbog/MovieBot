@@ -31,13 +31,16 @@ public class SchedulingPipeline extends NLPPipeline<MovieReservation> {
                 new DayMonthWordYearReducer(),
                 new DayOfMonthReducer(),
                 new DayMonthYearReducer(),
+                new MonthDayReducer(),
                 new NextSomethingDateReducer(),
                 new TodayReducer(),
                 new TomorrowReducer(),
                 new OnDateReducer(),
 
                 new TimeDateReducer(),
-                new DateTimeReducer()
+                new DateTimeReducer(),
+
+                new SchedulingDateTimeReducer()
         );
 
         return reducers.stream().

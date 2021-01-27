@@ -22,8 +22,7 @@ public class DetailedHelpMessageCreator {
         EmbedBuilder builder = new EmbedBuilder();
         builder
                 .setTitle(command.getName())
-                .setDescription(help.getDetailedInfo())
-                .setColor(Color.lightGray);
+                .setDescription(help.getDetailedInfo());
 
         appendList(builder, "Syntax", help.getSyntaxList());
         appendList(builder, "Examples", help.getUseExamples());

@@ -4,7 +4,9 @@ import com.pbo.movieBot.bot.Bot;
 import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,22 +39,15 @@ public class AnnouncementManager {
     }
 
     private Collection<TimedEvent> getAnnouncementsForReservation(MovieReservation reservation) {
-        TimedLambda<MovieReservation> announcement1 = new TimedLambda<>(reservation, this::announceMovie);
-        LocalDateTime reservationDateTime =
-                LocalDateTime.of(
-                        reservation.getReservationDate(),
-                        reservation.getReservationTime()
-                );
-        announcement1.schedule(reservationDateTime);
+        TimedEvent<MovieReservation> announcement1 = new TimedMovieAnnouncer(reservation);
+        LocalDate date = reservation.getReservationDate();
+        LocalTime time = reservation.getReservationTime();
+
+        announcement1.schedule(date, time);
 
         Set<TimedEvent> set = new HashSet<>();
         set.add(announcement1);
 
         return set;
-    }
-
-    private void announceMovie(MovieReservation reservation) {
-        Bot.getJdaInstance().getTextChannelById(Configuration.getDefaultChannelId()).sendMessage(reservation.getTitle()).queue();
-        remove(reservation);
     }
 }

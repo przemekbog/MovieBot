@@ -19,6 +19,13 @@ public abstract class TimedEvent<TArgs> {
         timer.cancel();
     }
 
+    public void schedule(LocalDate date, LocalTime time) {
+        schedule(LocalDateTime.of(
+                date,
+                time
+        ));
+    }
+
     public void schedule(LocalDateTime dateTime) {
         Date date = getDateFromLocalDateTime(dateTime);
         TimerTask task = new TimerTask() {
