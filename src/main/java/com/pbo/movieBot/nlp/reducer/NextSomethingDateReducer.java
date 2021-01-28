@@ -6,6 +6,8 @@ import com.pbo.movieBot.nlp.base.Token;
 import com.pbo.movieBot.nlp.pattern.*;
 import com.pbo.movieBot.nlp.token.DateToken;
 import com.pbo.movieBot.nlp.token.StringToken;
+import com.pbo.movieBot.nlp.token.WeekDay;
+import com.pbo.movieBot.nlp.token.WeekDayToken;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +20,8 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
                         new SingleTokenPattern(new StringToken("next", "")),
                         new OrPattern(
                                 new SingleTokenPattern(new StringToken("week", "")),
-                                new SingleTokenPattern(new StringToken("month", ""))
+                                new SingleTokenPattern(new StringToken("month", "")),
+                                new ClassPattern(WeekDayToken.class)
                         )
                 )
         );
@@ -26,7 +29,23 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
 
     @Override
     public Token<LocalDate> reduce(List<Token<?>> tokens) {
-        String chosenOption = (String) tokens.get(1).getValue();
+        Token<?> token = tokens.get(1);
+
+        LocalDate date;
+        if(token instanceof StringToken) {
+            date = getDateFromStringToken((StringToken) token);
+        } else if(token instanceof WeekDayToken) {
+            date = getDateFromWeekDayToken((WeekDayToken) token);
+        } else {
+            throw new IllegalArgumentException("Unexpected value: " + token);
+        }
+
+        String stringPart = tokens.get(0).getStringPart() + tokens.get(1).getStringPart();
+        return new DateToken(date, stringPart);
+    }
+
+    private LocalDate getDateFromStringToken(StringToken token) {
+        String chosenOption = token.getValue();
 
         LocalDate chosenDate = switch (chosenOption) {
             case "week" -> getNextWeek();
@@ -34,9 +53,23 @@ public class NextSomethingDateReducer implements Reducer<LocalDate> {
             default -> throw new IllegalStateException("Unexpected value: " + chosenOption);
         };
 
-        String stringPart = tokens.get(0).getStringPart() + tokens.get(1).getStringPart();
+        return chosenDate;
+    }
 
-        return new DateToken(chosenDate, stringPart);
+    private LocalDate getDateFromWeekDayToken(WeekDayToken token) {
+        WeekDay dayOfTheWeek = token.getValue();
+
+        return getNextWeekDay(dayOfTheWeek);
+    }
+
+    private LocalDate getNextWeekDay(WeekDay weekDay) {
+        LocalDate today = LocalDate.now();
+
+        int currentDayIndex = today.getDayOfWeek().ordinal();
+        int weekDayIndex = weekDay.ordinal();
+
+        int offset = 7 + weekDayIndex - currentDayIndex;
+        return today.plusDays(offset);
     }
 
     private LocalDate getNextWeek() {
