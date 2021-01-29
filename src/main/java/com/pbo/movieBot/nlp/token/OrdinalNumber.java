@@ -1,4 +1,4 @@
-package com.pbo.movieBot.nlp;
+package com.pbo.movieBot.nlp.token;
 
 public class OrdinalNumber {
     private int value;

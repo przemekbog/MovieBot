@@ -1,6 +1,6 @@
 package com.pbo.movieBot.nlp.reducer;
 
-import com.pbo.movieBot.nlp.OrdinalNumber;
+import com.pbo.movieBot.nlp.token.OrdinalNumber;
 import com.pbo.movieBot.nlp.base.Pattern;
 import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.base.Token;
