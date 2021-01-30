@@ -5,6 +5,9 @@ import com.pbo.movieBot.movieReservations.JsonSaver;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.movieReservations.base.ReservationSaver;
 import com.pbo.movieBot.movieReservations.base.filtering.AnySpecification;
+import com.pbo.movieBot.movieReservations.base.filtering.Specification;
+
+import java.util.List;
 
 public class MovieBotContext {
     private ReservationSaver saver;
@@ -21,8 +24,13 @@ public class MovieBotContext {
         announcementManager.schedule(reservation);
     }
 
-    public ReservationSaver getSaver() {
-        return saver;
+    public void removeReservation(MovieReservation reservation) {
+        saver.remove(reservation);
+        announcementManager.remove(reservation);
+    }
+
+    public List<MovieReservation> getMoviesBySpecification(Specification<MovieReservation> specification) {
+        return saver.getBySpecification(specification);
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public class ScheduleCommandHelp implements CommandHelp {
     @Override
     public List<String> getSyntaxList() {
-        return List.of("!schedule [title] for [date and time]");
+        return List.of("schedule [title] for [date and time]");
     }
 
     @Override
@@ -26,12 +26,12 @@ public class ScheduleCommandHelp implements CommandHelp {
     @Override
     public List<String> getUseExamples() {
         return List.of(
-                "!schedule Shrek for 5pm on 03.10.2020",
-                "!schedule Emoji Movie for 13:00 on 15th December",
-                "!schedule Pulp Fiction for 10am on 15th",
-                "!schedule Inception for 20:00 tomorrow",
-                "!schedule Castaway for this time tomorrow",
-                "!schedule The Room for 10pm today"
+                "schedule Shrek for 5pm on 03.10.2020",
+                "schedule Emoji Movie for 13:00 on 15th December",
+                "schedule Pulp Fiction for 10am on 15th",
+                "schedule Inception for 20:00 tomorrow",
+                "schedule Castaway for this time tomorrow",
+                "schedule The Room for 10pm today"
         );
     }
 }

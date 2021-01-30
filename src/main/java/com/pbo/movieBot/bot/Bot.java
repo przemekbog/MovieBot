@@ -1,5 +1,6 @@
 package com.pbo.movieBot.bot;
 
+import com.pbo.movieBot.bot.commands.reschedule.RescheduleCommand;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.bot.context.MovieBotContext;
@@ -34,6 +35,7 @@ public class Bot {
                 new HelpCommand(),
                 new InfoCommand(),
                 new ScheduleCommand(),
+                new RescheduleCommand(),
                 new TestCommand1(),
                 new TestCommand2(),
                 new TestCommand3(),
