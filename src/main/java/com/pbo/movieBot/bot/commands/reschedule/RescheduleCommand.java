@@ -5,14 +5,11 @@ import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.utils.Emoji;
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
-import com.pbo.movieBot.movieApi.movie.Movie;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.movieReservations.base.filtering.Specification;
-import net.dv8tion.jda.api.entities.Emote;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.internal.utils.tuple.Pair;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -34,29 +31,51 @@ public class RescheduleCommand extends Command<MovieBotContext> {
         Optional<MovieReservation> optionalMovieReservation = getFirstReservationBySpecification(context, specification);
 
         if(!optionalMovieReservation.isPresent()) {
-            sendNoMovieFoundMessage(event.getChannel());
+            sendMovieNotFound(event);
             return;
         }
 
         MovieReservation deletedReservation = optionalMovieReservation.get();
         MovieReservation replacementReservation = interpretedResult.getRight();
 
+        if(!isReplacementDateValid(replacementReservation)) {
+            sendInvalidDate(event);
+            return;
+        }
+
         context.removeReservation(deletedReservation);
         context.addReservation(replacementReservation);
 
-        event.getMessage().addReaction(Emoji.OK_HAND).queue();
-        event.getChannel().sendMessage(deletedReservation.toString() + replacementReservation.toString()).queue();
+        sendConfirmation(event);
     }
 
-    private void sendNoMovieFoundMessage(MessageChannel channel) {
-        channel.sendMessage("Could not find the specified movie " + Emoji.DISAPPOINTED_FACE).queue();
+    private void sendInvalidDate(CommandEvent event) {
+        event.getChannel().sendMessage("Invalid date " + Emoji.ANGRY).queue();
+    }
+
+    private void sendMovieNotFound(CommandEvent event) {
+        event.getChannel().sendMessage("Could not find the specified movie " + Emoji.DISAPPOINTED_FACE).queue();
+    }
+
+    private void sendConfirmation(CommandEvent event) {
+        event.getMessage().addReaction(Emoji.OK_HAND).queue();
+    }
+
+    private boolean isReplacementDateValid(MovieReservation reservation) {
+        LocalDateTime dateTime = LocalDateTime.of(
+                reservation.getReservationDate(),
+                reservation.getReservationTime()
+        );
+
+        LocalDateTime now = LocalDateTime.now();
+        return dateTime.isAfter(now);
     }
 
     private Optional<MovieReservation> getFirstReservationBySpecification(
             MovieBotContext context,
             Specification<MovieReservation> specification) {
 
-        List<MovieReservation> reservations = context.getBySpecification(specification);
+        List<MovieReservation> reservations = context.getMoviesBySpecification(specification);
 
         if(reservations.size() == 0) {
             return Optional.empty();

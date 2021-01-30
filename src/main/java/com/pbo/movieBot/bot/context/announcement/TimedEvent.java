@@ -27,6 +27,11 @@ public abstract class TimedEvent<TArgs> {
     }
 
     public void schedule(LocalDateTime dateTime) {
+        LocalDateTime now = LocalDateTime.now();
+        if(dateTime.isBefore(now)) {
+            return;
+        }
+
         Date date = getDateFromLocalDateTime(dateTime);
         TimerTask task = new TimerTask() {
             @Override

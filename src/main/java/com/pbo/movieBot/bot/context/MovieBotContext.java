@@ -29,7 +29,7 @@ public class MovieBotContext {
         announcementManager.remove(reservation);
     }
 
-    public List<MovieReservation> getBySpecification(Specification<MovieReservation> specification) {
+    public List<MovieReservation> getMoviesBySpecification(Specification<MovieReservation> specification) {
         return saver.getBySpecification(specification);
     }
 
