@@ -1,6 +1,5 @@
-package com.pbo.movieBot.bot.commands.reschedule.nlp;
+package com.pbo.movieBot.bot.commands.cancel.nlp;
 
-import com.pbo.movieBot.bot.commands.schedule.nlp.SchedulingDateTimeReducer;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.movieReservations.base.filtering.Specification;
 import com.pbo.movieBot.nlp.NLPPipeline;
@@ -9,15 +8,13 @@ import com.pbo.movieBot.nlp.base.Reducer;
 import com.pbo.movieBot.nlp.listReducer.IterativeListReducer;
 import com.pbo.movieBot.nlp.reducer.*;
 import com.pbo.movieBot.nlp.tokenizer.TokenizerImpl;
-import net.dv8tion.jda.internal.utils.tuple.Pair;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ReschedulingPipeline extends NLPPipeline<Pair<Specification<MovieReservation>, MovieReservation>> {
-
-    public ReschedulingPipeline() {
-        super(new TokenizerImpl(), getListReducers(), new ReschedulingParser());
+public class CancelPipeline extends NLPPipeline<Specification<MovieReservation>> {
+    public CancelPipeline() {
+        super(new TokenizerImpl(), getListReducers(), new CancelParser());
     }
 
     private static List<ListReducer> getListReducers() {
@@ -51,5 +48,4 @@ public class ReschedulingPipeline extends NLPPipeline<Pair<Specification<MovieRe
                 map(reducer -> new IterativeListReducer(reducer))
                 .collect(Collectors.toList());
     }
-
 }

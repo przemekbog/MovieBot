@@ -96,7 +96,7 @@ public class ReschedulingParser implements Parser<Pair<Specification<MovieReserv
             builder.append(token.getStringPart());
         }
 
-        return builder.toString();
+        return builder.toString().trim();
     }
 
 

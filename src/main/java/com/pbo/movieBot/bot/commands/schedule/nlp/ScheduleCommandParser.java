@@ -23,7 +23,7 @@ public class ScheduleCommandParser implements Parser<MovieReservation> {
 
         int lastIndex = tokens.size() - 1;
         List<Token<?>> titlePart = tokens.subList(0, lastIndex);
-        String title = combineStringParts(titlePart);
+        String title = combineStringParts(titlePart).trim();
 
         if(!isTitleValid(title)) {
             throw new InvalidMovieTitleException("Movie with given title must exist");
