@@ -16,7 +16,7 @@ public class MovieBotContext {
     public MovieBotContext(String path) {
         saver = new JsonSaver(path);
         saver.clear();
-        announcementManager.schedule(saver.getBySpecification(new AnySpecification<>()));
+        announcementManager.schedule(saver);
     }
 
     public void addReservation(MovieReservation reservation) {
