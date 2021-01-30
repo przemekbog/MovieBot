@@ -26,6 +26,13 @@ public class MovieReservation {
         return title;
     }
 
+    public LocalDateTime getReservationDateTime() {
+        return LocalDateTime.of(
+                getReservationDate(),
+                getReservationTime()
+        );
+    }
+
     public LocalDate getReservationDate() {
         return LocalDate.parse(reservationDate);
     }
