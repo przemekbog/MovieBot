@@ -2,6 +2,7 @@ package com.pbo.movieBot.bot.commands.quote;
 
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
+import com.pbo.movieBot.command.base.CommandHelp;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
@@ -15,6 +16,11 @@ public class QuoteCommand extends Command {
     @Override
     public String getName() {
         return "quote";
+    }
+
+    @Override
+    public CommandHelp getHelp() {
+        return new QuoteCommandHelp();
     }
 
     @Override
