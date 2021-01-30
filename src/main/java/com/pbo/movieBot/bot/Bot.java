@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot;
 
 import com.pbo.movieBot.bot.commands.announcementChannel.AnnouncementChannelCommand;
+import com.pbo.movieBot.bot.commands.cancel.CancelCommand;
 import com.pbo.movieBot.bot.commands.reschedule.RescheduleCommand;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
@@ -35,6 +36,7 @@ public class Bot {
         executor.addCommands(
                 new HelpCommand(),
                 new InfoCommand(),
+                new CancelCommand(),
                 new ScheduleCommand(),
                 new RescheduleCommand(),
                 new AnnouncementChannelCommand(),
