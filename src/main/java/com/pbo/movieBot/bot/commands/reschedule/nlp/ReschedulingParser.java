@@ -32,14 +32,14 @@ public class ReschedulingParser implements Parser<Pair<Specification<MovieReserv
         if(!hasFromDateOrDateTime(tokens)) {
             String title = collectStringParts(tokens.subList(0, tokens.size() - 2));
             return Pair.of(
-                    new TitleSpecification(title),
+                    new CaseInsensitiveTitleSpecification(title),
                     new MovieReservation(title, destinationDateTime)
             );
         }
 
         ArrayList<Specification<MovieReservation>> specifications = new ArrayList<>();
         String title = collectStringParts(tokens.subList(0, tokens.size() - 4));
-        specifications.add(new TitleSpecification(title));
+        specifications.add(new CaseInsensitiveTitleSpecification(title));
 
         Token<?> dateOrDateTimeToken = tokens.get(tokens.size() - 3);
         if(dateOrDateTimeToken instanceof DateTimeToken) {

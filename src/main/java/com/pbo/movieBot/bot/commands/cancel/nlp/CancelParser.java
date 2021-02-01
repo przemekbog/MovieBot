@@ -26,7 +26,7 @@ public class CancelParser implements Parser<Specification<MovieReservation>> {
         }
 
         String title = collectStringParts(tokens);
-        return new TitleSpecification(title);
+        return new CaseInsensitiveTitleSpecification(title);
     }
 
     private Specification<MovieReservation> parseWithDateAndOrTime(List<Token<?>> tokens) {
@@ -50,7 +50,7 @@ public class CancelParser implements Parser<Specification<MovieReservation>> {
         }
 
         String title = collectStringParts(tokens.subList(0, tokens.size() - 1));
-        specifications.add(new TitleSpecification(title));
+        specifications.add(new CaseInsensitiveTitleSpecification(title));
 
         return new AndSpecification<>(specifications);
     }
