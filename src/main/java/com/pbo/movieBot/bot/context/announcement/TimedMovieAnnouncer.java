@@ -19,7 +19,7 @@ public class TimedMovieAnnouncer extends TimedEvent<MovieReservation> {
 
     public TimedMovieAnnouncer(MovieReservation reservation) {
         super(reservation);
-        channel = getChannelById(Configuration.getDefaultChannelId());
+        channel = getChannelById(Configuration.getAnnouncementChannelId());
     }
 
     @Override

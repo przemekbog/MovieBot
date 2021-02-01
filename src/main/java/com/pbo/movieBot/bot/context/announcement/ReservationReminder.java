@@ -23,11 +23,6 @@ public class ReservationReminder extends TimedEvent<MovieReservation> {
     protected void run(MovieReservation reservation) {
         MessageChannel channel = getAnnouncementChannel();
         channel.sendMessage(getReminderEmbed(reservation)).queue();
-
-//        String title = reservation.getTitle();
-//        if(hasPoster(title)) {
-//            channel.sendMessage(getPosterEmbed(title)).queue();
-//        }
     }
 
     private MessageEmbed getReminderEmbed(MovieReservation reservation) {
@@ -68,7 +63,7 @@ public class ReservationReminder extends TimedEvent<MovieReservation> {
     }
 
     private MessageChannel getAnnouncementChannel() {
-        long id = Configuration.getDefaultChannelId();
+        long id = Configuration.getAnnouncementChannelId();
         return Bot.getJdaInstance().getTextChannelById(id);
     }
 
