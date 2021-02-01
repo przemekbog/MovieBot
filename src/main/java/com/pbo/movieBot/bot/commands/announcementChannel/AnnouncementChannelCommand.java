@@ -37,7 +37,7 @@ public class AnnouncementChannelCommand extends Command<MovieBotContext> {
 
         long id = first.getIdLong();
 
-        Configuration.setDefaultChannelId(id);
+        Configuration.setAnnouncementChannelId(id);
         Configuration.save();
 
         sendConfirmation(event);

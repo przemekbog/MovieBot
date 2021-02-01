@@ -7,10 +7,7 @@ import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class AnnouncementManager {
     private HashMap<MovieReservation, Collection<TimedEvent>> announcements = new HashMap<>();
@@ -39,15 +36,14 @@ public class AnnouncementManager {
     }
 
     private Collection<TimedEvent> getAnnouncementsForReservation(MovieReservation reservation) {
-        TimedEvent<MovieReservation> announcement1 = new TimedMovieAnnouncer(reservation);
-        LocalDate date = reservation.getReservationDate();
-        LocalTime time = reservation.getReservationTime();
+        TimedEvent<MovieReservation> reminder = new ReservationReminder(reservation);
+        TimedEvent<MovieReservation> finalAnnouncement = new TimedMovieAnnouncer(reservation);
 
-        announcement1.schedule(date, time);
+        LocalDateTime reservationDateTime = reservation.getReservationDateTime();
 
-        Set<TimedEvent> set = new HashSet<>();
-        set.add(announcement1);
+        finalAnnouncement.schedule(reservationDateTime);
+        reminder.schedule(reservationDateTime.minusMinutes(60));
 
-        return set;
+        return Set.of(finalAnnouncement, reminder);
     }
 }

@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot.options;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ public class Configuration {
     private static ConfigurationHolder instance;
 
     static {
-        instance = loadConfig();
+        instance = load();
     }
 
     public static String getMovieAPIKey() {
@@ -27,19 +28,19 @@ public class Configuration {
         return instance.getStatusMessage();
     }
 
-    public static long getDefaultChannelId() {
-        return instance.getDefaultChannelId();
+    public static long getAnnouncementChannelId() {
+        return instance.getAnnouncementChannelId();
     }
 
-    public static void setDefaultChannelId(long defaultChannelId) {
-        instance.setDefaultChannelId(defaultChannelId);
+    public static void setAnnouncementChannelId(long announcementChannelId) {
+        instance.setAnnouncementChannelId(announcementChannelId);
     }
 
     public static void save() {
         try {
             FileWriter writer = new FileWriter(getFile(PATH));
 
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(instance, writer);
 
             writer.flush();
@@ -49,7 +50,7 @@ public class Configuration {
         }
     }
 
-    private static ConfigurationHolder loadConfig() {
+    private static ConfigurationHolder load() {
         try {
             FileReader reader = new FileReader(getFile(PATH));
 

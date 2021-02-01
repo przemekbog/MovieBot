@@ -4,7 +4,8 @@ class ConfigurationHolder {
     private String movieAPIKey = "not set";
     private String discordAPIKey = "not set";
     private String statusMessage = "";
-    private long defaultChannelId;
+    private long announcementChannelId;
+    private long reminderChannelId;
 
     public String getMovieAPIKey() {
         return movieAPIKey;
@@ -14,15 +15,15 @@ class ConfigurationHolder {
         return discordAPIKey;
     }
 
-    public long getDefaultChannelId() {
-        return defaultChannelId;
-    }
-
     public String getStatusMessage() {
         return statusMessage;
     }
 
-    public void setDefaultChannelId(long defaultChannelId) {
-        this.defaultChannelId = defaultChannelId;
+    public long getAnnouncementChannelId() {
+        return announcementChannelId;
+    }
+
+    public void setAnnouncementChannelId(long announcementChannelId) {
+        this.announcementChannelId = announcementChannelId;
     }
 }

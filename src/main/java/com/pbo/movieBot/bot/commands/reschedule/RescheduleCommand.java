@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot.commands.reschedule;
 
 import com.pbo.movieBot.bot.commands.reschedule.nlp.ReschedulingPipeline;
+import com.pbo.movieBot.bot.commands.reschedule.nlp.exception.IncorrectSyntaxException;
 import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.utils.Emoji;
 import com.pbo.movieBot.command.base.Command;
@@ -31,9 +32,15 @@ public class RescheduleCommand extends Command<MovieBotContext> {
         String text = event.getArgs();
         ReschedulingPipeline pipeline = new ReschedulingPipeline();
 
-        Pair<Specification<MovieReservation>, MovieReservation> interpretedResult = pipeline.process(text);
-        Specification<MovieReservation> specification = interpretedResult.getLeft();
+        Pair<Specification<MovieReservation>, MovieReservation> interpretedResult;
+        try {
+            interpretedResult = pipeline.process(text);
+        } catch (IncorrectSyntaxException e) {
+            sendInvalidSyntax(event);
+            return;
+        }
 
+        Specification<MovieReservation> specification = interpretedResult.getLeft();
         Optional<MovieReservation> optionalMovieReservation = getFirstReservationBySpecification(context, specification);
 
         if(!optionalMovieReservation.isPresent()) {
@@ -57,6 +64,10 @@ public class RescheduleCommand extends Command<MovieBotContext> {
 
     private void sendInvalidDate(CommandEvent event) {
         event.getChannel().sendMessage("Invalid date " + Emoji.ANGRY).queue();
+    }
+
+    private void sendInvalidSyntax(CommandEvent event) {
+        event.getChannel().sendMessage("Invalid syntax").queue();
     }
 
     private void sendMovieNotFound(CommandEvent event) {
