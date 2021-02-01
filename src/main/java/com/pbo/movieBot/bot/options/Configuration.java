@@ -36,14 +36,6 @@ public class Configuration {
         instance.setAnnouncementChannelId(announcementChannelId);
     }
 
-    public static long getReminderChannelId() {
-        return instance.getReminderChannelId();
-    }
-
-    public static void setReminderChannelId(long reminderChannelId) {
-        instance.setReminderChannelId(reminderChannelId);
-    }
-
     public static void save() {
         try {
             FileWriter writer = new FileWriter(getFile(PATH));

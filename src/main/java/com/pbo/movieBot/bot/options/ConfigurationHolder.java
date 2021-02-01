@@ -26,12 +26,4 @@ class ConfigurationHolder {
     public void setAnnouncementChannelId(long announcementChannelId) {
         this.announcementChannelId = announcementChannelId;
     }
-
-    public long getReminderChannelId() {
-        return reminderChannelId;
-    }
-
-    public void setReminderChannelId(long reminderChannelId) {
-        this.reminderChannelId = reminderChannelId;
-    }
 }
