@@ -15,7 +15,6 @@ public class MovieBotContext {
 
     public MovieBotContext(String path) {
         saver = new JsonSaver(path);
-        saver.clear();
         announcementManager.schedule(saver);
     }
 
@@ -36,5 +35,4 @@ public class MovieBotContext {
     public List<MovieReservation> getMoviesBySpecification(Specification<MovieReservation> specification) {
         return saver.getBySpecification(specification);
     }
-
 }
