@@ -29,6 +29,10 @@ public class MovieBotContext {
         announcementManager.remove(reservation);
     }
 
+    public int getNumberOfReservations() {
+        return saver.size();
+    }
+
     public List<MovieReservation> getMoviesBySpecification(Specification<MovieReservation> specification) {
         return saver.getBySpecification(specification);
     }
