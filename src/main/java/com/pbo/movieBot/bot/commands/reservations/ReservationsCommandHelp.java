@@ -20,10 +20,10 @@ public class ReservationsCommandHelp implements CommandHelp {
 
     @Override
     public String getDetailedInfo() {
-        return "shows a list of scheduled reservations. " +
+        return "Shows a list of scheduled reservations. " +
                 "Because there may be a lot of scheduled movies, " +
                 "the list is split into pages. You can see the page" +
-                " you want by adding the page number after as an argument (example 2).";
+                " you want by adding the page number as an argument (example 2).";
     }
 
     @Override
