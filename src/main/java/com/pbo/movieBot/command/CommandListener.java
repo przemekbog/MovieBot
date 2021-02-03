@@ -2,6 +2,7 @@ package com.pbo.movieBot.command;
 
 import com.pbo.movieBot.command.base.CommandEvent;
 import com.pbo.movieBot.command.base.CommandExecutor;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -22,6 +23,11 @@ public class CommandListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(event.getAuthor().isBot()) {
+            return;
+        }
+
+        ChannelType channelType = event.getChannelType();
+        if(channelType.equals(ChannelType.PRIVATE)) {
             return;
         }
 
