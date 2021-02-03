@@ -15,15 +15,14 @@ import java.awt.*;
 
 public class TimedMovieAnnouncer extends TimedEvent<MovieReservation> {
     private static final Color MESSAGE_COLOR = new Color(0x1387AD);
-    private MessageChannel channel;
 
     public TimedMovieAnnouncer(MovieReservation reservation) {
         super(reservation);
-        channel = getChannelById(Configuration.getAnnouncementChannelId());
     }
 
     @Override
     protected void run(MovieReservation reservation) {
+        MessageChannel channel = getChannelById(Configuration.getAnnouncementChannelId());
         channel.sendMessage(getAnnouncementEmbed(reservation)).queue();
 
         MovieFetcher fetcher = MovieFetcher.withMovieTitle(reservation.getTitle());
