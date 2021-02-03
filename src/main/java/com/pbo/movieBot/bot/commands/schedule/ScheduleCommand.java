@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 public class ScheduleCommand extends Command<MovieBotContext> {
 
-    private static final Color SCHEDULING_COLOR = new Color(0xBA7E0E);
+    private static final Color SCHEDULING_COLOR = new Color(0xCD8B0C);
 
     @Override
     public String getName() {

@@ -19,7 +19,7 @@ import java.util.function.Function;
 public class ReservationsCommand extends Command<MovieBotContext> {
 
     private static final int RESERVATIONS_PER_PAGE = 10;
-    private static final Color LIST_EMBED_COLOR = new Color(0xBA7E0E);
+    private static final Color LIST_EMBED_COLOR = new Color(0xCD8B0C);
     private static final String BULLET_LIST_CHARACTER = "\u2022";
 
     @Override
