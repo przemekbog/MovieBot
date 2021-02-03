@@ -4,6 +4,7 @@ import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.utils.Emoji;
 import com.pbo.movieBot.command.base.Command;
 import com.pbo.movieBot.command.base.CommandEvent;
+import com.pbo.movieBot.command.base.CommandHelp;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 import com.pbo.movieBot.movieReservations.base.filtering.AnySpecification;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -24,6 +25,11 @@ public class ReservationsCommand extends Command<MovieBotContext> {
     @Override
     public String getName() {
         return "reservations";
+    }
+
+    @Override
+    public CommandHelp getHelp() {
+        return new ReservationsCommandHelp();
     }
 
     @Override
