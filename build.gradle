@@ -1,13 +1,25 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
+    }
 }
 
-logging.captureStandardOutput LogLevel.INFO
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
 
 group 'com.pbo'
 version '1.0-SNAPSHOT'
 
+
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'
+
 
 repositories {
     mavenCentral()
@@ -33,5 +45,19 @@ dependencies {
     compile 'com.jagrosh:jda-utilities:2.1'
     compile 'net.dv8tion:JDA:4.2.0_168'
 }
+
+mainClassName = 'com.pbo.movieBot.bot.Bot'
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
+//
+//jar {
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}
 
 

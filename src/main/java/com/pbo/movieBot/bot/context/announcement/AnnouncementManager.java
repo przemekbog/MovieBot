@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot.context.announcement;
 
 import com.pbo.movieBot.bot.Bot;
+import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
 
@@ -11,6 +12,11 @@ import java.util.*;
 
 public class AnnouncementManager {
     private HashMap<MovieReservation, Collection<TimedEvent>> announcements = new HashMap<>();
+    private MovieBotContext context;
+
+    public AnnouncementManager(MovieBotContext context) {
+        this.context = context;
+    }
 
     public void schedule(Collection<MovieReservation> reservations) {
         for(MovieReservation reservation : reservations) {
@@ -37,11 +43,11 @@ public class AnnouncementManager {
 
     private Collection<TimedEvent> getAnnouncementsForReservation(MovieReservation reservation) {
         TimedEvent<MovieReservation> reminder = new ReservationReminder(reservation);
-        TimedEvent<MovieReservation> finalAnnouncement = new TimedMovieAnnouncer(reservation);
+        TimedEvent<MovieReservation> finalAnnouncement = new TimedMovieAnnouncer(reservation, context);
 
         LocalDateTime reservationDateTime = reservation.getReservationDateTime();
 
-        finalAnnouncement.schedule(reservationDateTime);
+        finalAnnouncement.schedule(reservationDateTime.minusMinutes(5));
         reminder.schedule(reservationDateTime.minusMinutes(60));
 
         return Set.of(finalAnnouncement, reminder);

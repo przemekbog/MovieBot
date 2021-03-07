@@ -1,6 +1,7 @@
 package com.pbo.movieBot.bot.context.announcement;
 
 import com.pbo.movieBot.bot.Bot;
+import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.bot.utils.MovieInfoEmbedFactory;
 import com.pbo.movieBot.movieApi.MovieFetcher;
@@ -15,9 +16,11 @@ import java.awt.*;
 
 public class TimedMovieAnnouncer extends TimedEvent<MovieReservation> {
     private static final Color MESSAGE_COLOR = new Color(0x1387AD);
+    private MovieBotContext context;
 
-    public TimedMovieAnnouncer(MovieReservation reservation) {
+    public TimedMovieAnnouncer(MovieReservation reservation, MovieBotContext context) {
         super(reservation);
+        this.context = context;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class TimedMovieAnnouncer extends TimedEvent<MovieReservation> {
         Movie movie = fetcher.fetch();
         MessageEmbed infoEmbed = new MovieInfoEmbedFactory().getShortInfo(movie, MESSAGE_COLOR);
 
+        context.removeReservation(reservation);
         channel.sendMessage(infoEmbed).queue();
     }
 

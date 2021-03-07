@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AnnouncementChannelCommand extends Command<MovieBotContext> {
     @RegExp
-    static final String REGEX_MATCHING_CHANNEL_MENTION = "^\\<\\#\\d+\\>$";
+    static final String REGEX_MATCHING_CHANNEL_MENTION = "^\\<\\#\\d+\\>$"; // so sad...
 
     @Override
     public String getName() {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MovieBotContext {
     private ReservationSaver saver;
-    private AnnouncementManager announcementManager = new AnnouncementManager();
+    private AnnouncementManager announcementManager = new AnnouncementManager(this);
 
     public MovieBotContext(String path) {
         saver = new JsonSaver(path);

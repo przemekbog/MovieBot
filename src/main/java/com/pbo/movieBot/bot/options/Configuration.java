@@ -7,9 +7,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.stream.DoubleStream;
 
 public class Configuration {
-    private static final String PATH = "options/config.json";
+    private static final String PATH = "./options/config.json";
     private static ConfigurationHolder instance;
 
     static {
@@ -65,9 +66,11 @@ public class Configuration {
 
     private static File getFile(String filePath) {
         try {
+
             File file = new File(filePath);
 
             if(!file.exists()){
+                System.out.println(filePath + " does not exist. Creating...");
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             }
