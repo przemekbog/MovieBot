@@ -43,14 +43,16 @@ public class AnnouncementManager {
     }
 
     private Collection<TimedEvent> getAnnouncementsForReservation(MovieReservation reservation) {
-        TimedEvent<MovieReservation> reminder = new ReservationReminder(reservation);
+        TimedEvent<MovieReservation> reminder1 = new ReservationReminder(reservation);
+        TimedEvent<MovieReservation> reminder2 = new ReservationReminder(reservation);
         TimedEvent<MovieReservation> finalAnnouncement = new TimedMovieAnnouncer(reservation, context);
 
         LocalDateTime reservationDateTime = reservation.getReservationDateTime();
 
-        finalAnnouncement.schedule(reservationDateTime.minusMinutes(5));
-        reminder.schedule(reservationDateTime.minusMinutes(60));
+        finalAnnouncement.schedule(reservationDateTime);
+        reminder2.schedule(reservationDateTime.minusMinutes(5));
+        reminder1.schedule(reservationDateTime.minusMinutes(60));
 
-        return Set.of(finalAnnouncement, reminder);
+        return Set.of(finalAnnouncement, reminder2);
     }
 }
