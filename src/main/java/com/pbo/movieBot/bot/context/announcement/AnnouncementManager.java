@@ -4,6 +4,7 @@ import com.pbo.movieBot.bot.Bot;
 import com.pbo.movieBot.bot.context.MovieBotContext;
 import com.pbo.movieBot.bot.options.Configuration;
 import com.pbo.movieBot.movieReservations.base.MovieReservation;
+import org.apache.commons.logging.LogFactory;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

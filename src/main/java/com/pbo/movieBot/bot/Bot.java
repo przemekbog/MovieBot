@@ -21,11 +21,15 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.security.auth.login.LoginException;
+import java.time.LocalDateTime;
 
 public class Bot {
     private static JDA jdaInstance;
+    private static Log log = LogFactory.getLog(Bot.class);
 
     public static JDA getJdaInstance() {
         return jdaInstance;
@@ -50,8 +54,10 @@ public class Bot {
                 new TestCommand4()
         );
 
+
         CommandListener listener = new CommandListener(executor, "!");
 
+        log.debug("Starting bot on " + LocalDateTime.now() + "...");
         jdaInstance = JDABuilder.createLight(Configuration.getDiscordAPIKey(), GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
                 .addEventListeners(listener)
                 .setActivity(Activity.playing(Configuration.getStatusMessage()))

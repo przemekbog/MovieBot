@@ -9,6 +9,6 @@ RUN mkdir /app
 RUN mkdir /app/options
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/server.jar
 
-ENTRYPOINT ["java", "-jar", "/app/server.jar"]
+ENTRYPOINT ["java", "-jar", "-Duser.timezone=Europe/Warsaw", "/app/server.jar"]
 
 #ENTRYPOINT ["java", "-jar", "/home/gradle/src/build/libs/MovieBot-1.0-SNAPSHOT-all.jar"]
