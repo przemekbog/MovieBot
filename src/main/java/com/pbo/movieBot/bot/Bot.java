@@ -5,6 +5,7 @@ import com.pbo.movieBot.bot.commands.cancel.CancelCommand;
 import com.pbo.movieBot.bot.commands.quote.QuoteCommand;
 import com.pbo.movieBot.bot.commands.reschedule.RescheduleCommand;
 import com.pbo.movieBot.bot.commands.reservations.ReservationsCommand;
+import com.pbo.movieBot.bot.commands.smile.SmileCommand;
 import com.pbo.movieBot.command.CommandExecutorImpl;
 import com.pbo.movieBot.command.CommandListener;
 import com.pbo.movieBot.bot.context.MovieBotContext;
@@ -47,6 +48,7 @@ public class Bot {
                 new RescheduleCommand(),
                 new ReservationsCommand(),
                 new AnnouncementChannelCommand(),
+                new SmileCommand(),
                 new QuoteCommand(),
                 new TestCommand1(),
                 new TestCommand2(),
