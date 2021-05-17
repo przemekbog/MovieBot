@@ -12,11 +12,11 @@ public class SmileCommand extends Command {
 
     @Override
     public void execute(CommandEvent event, Object context) {
-        if(!event.getArgs().equals("")) {
+        if(!event.getArgs().trim().equals("")) {
             event.getChannel().sendMessage("This command does not accept arguments.").queue();
             return;
         }
 
-        event.getChannel().sendMessage("Command not found :)").queue();
+        event.getChannel().sendMessage("Command found :)").queue();
     }
 }
